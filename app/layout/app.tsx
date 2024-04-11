@@ -1,9 +1,13 @@
+import { Box, Container, Divider, HStack, Heading } from "@chakra-ui/react";
+import { useStore } from "@nanostores/react";
 import { FunctionComponent, PropsWithChildren } from "react";
-import { Box, Container, HStack, Divider, Heading } from "@chakra-ui/react";
+import { backend } from "~/backend";
 
 export const AppLayout: FunctionComponent<PropsWithChildren> = ({
   children,
 }) => {
+  const state = useStore(backend.$authState);
+
   return (
     <>
       <Box as="nav">
@@ -17,6 +21,10 @@ export const AppLayout: FunctionComponent<PropsWithChildren> = ({
             >
               <Heading size={"md"}>Inventory</Heading>
             </Box>
+            <span>
+              {state.type}
+              {state.type === "authenticated" ? ` - ${state.user.name}` : null}
+            </span>
           </HStack>
         </Container>
         <Divider orientation="horizontal" />

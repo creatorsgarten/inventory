@@ -9,10 +9,10 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import React from "react";
-import "./index.css";
+import "~/index.css";
 
-import { AppLayout } from "../packlets/layout/app";
-import logo from "./branding/creatorsgarten.svg";
+import logo from "~/branding/creatorsgarten.svg";
+import { AppLayout } from "~/layout/app";
 
 export const meta: MetaFunction = () => {
   return [
