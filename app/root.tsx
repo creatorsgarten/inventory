@@ -9,6 +9,7 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import React from "react";
+import "./index.css";
 
 import { AppLayout } from "../packlets/layout/app";
 import logo from "./branding/creatorsgarten.svg";
@@ -70,6 +71,8 @@ export function HydrateFallback() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        animation: "1s loading-init ease-out",
+        willChange: "opacity",
       }}
     >
       <img src={logo} style={{ width: 128 }} alt="Creatorsgarten (loading)" />
