@@ -1,7 +1,14 @@
 import { ReadableAtom } from "nanostores";
 
 export interface InventoryBackend {
+  /**
+   * Subscribe to me to get the current authentication state.
+   */
   $authState: ReadableAtom<AuthState>;
+
+  /**
+   * Log out the current user.
+   */
   logOut: () => Promise<void>;
 }
 
