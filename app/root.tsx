@@ -1,20 +1,17 @@
 // root.tsx
-import React, { useContext, useEffect } from "react";
-import { withEmotionCache } from "@emotion/react";
 import { ChakraProvider } from "@chakra-ui/react";
+import { LinksFunction, MetaFunction } from "@remix-run/node";
 import {
   Links,
-  LiveReload,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-import { MetaFunction, LinksFunction } from "@remix-run/node";
+import React from "react";
 
-import { ServerStyleContext, ClientStyleContext } from "./context";
-import logo from "./branding/creatorsgarten.svg";
 import { AppLayout } from "../packlets/layout/app";
+import logo from "./branding/creatorsgarten.svg";
 
 export const meta: MetaFunction = () => {
   return [
@@ -36,77 +33,46 @@ export const links: LinksFunction = () => {
   ];
 };
 
-interface DocumentProps {
-  children: React.ReactNode;
-}
-
-const Document = withEmotionCache(
-  ({ children }: DocumentProps, emotionCache) => {
-    const serverStyleData = useContext(ServerStyleContext);
-    const clientStyleData = useContext(ClientStyleContext);
-
-    // Only executed on a client
-    useEffect(() => {
-      // re-link sheet container
-      emotionCache.sheet.container = document.head;
-      // re-inject tags
-      const tags = emotionCache.sheet.tags;
-      emotionCache.sheet.flush();
-      tags.forEach((tag) => {
-        (emotionCache.sheet as any)._insertTag(tag);
-      });
-      // reset cache to reapply global styles
-      clientStyleData?.reset();
-    }, []);
-
-    return (
-      <html lang="en">
-        <head>
-          <Meta />
-          <Links />
-          {serverStyleData?.map(({ key, ids, css }) => (
-            <style
-              key={key}
-              data-emotion={`${key} ${ids.join(" ")}`}
-              dangerouslySetInnerHTML={{ __html: css }}
-            />
-          ))}
-        </head>
-        <body>
-          {children}
-          <ScrollRestoration />
-          <Scripts />
-          <LiveReload />
-        </body>
-      </html>
-    );
-  },
-);
-
-export default function App() {
+export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <Document>
-      <ChakraProvider>
-        <AppLayout>
-          <Outlet />
-        </AppLayout>
-      </ChakraProvider>
-    </Document>
+    <html lang="en">
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        {children}
+        <ScrollRestoration />
+        <Scripts />
+      </body>
+    </html>
   );
 }
 
-// export function HydrateFallback() {
-//   return (
-//     <div
-//       style={{
-//         position: "fixed",
-//         inset: 0,
-//         display: "flex",
-//         justifyContent: "center",
-//         alignItems: "center",
-//       }}
-//     >
-//       <img src={logo} style={{ width: 128 }} alt="Creatorsgarten (loading)" />
-//     </div>
-//   );
-// }
+export default function App() {
+  return (
+    <ChakraProvider>
+      <AppLayout>
+        <Outlet />
+      </AppLayout>
+    </ChakraProvider>
+  );
+}
+
+export function HydrateFallback() {
+  return (
+    <div
+      style={{
+        position: "fixed",
+        inset: 0,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <img src={logo} style={{ width: 128 }} alt="Creatorsgarten (loading)" />
+    </div>
+  );
+}

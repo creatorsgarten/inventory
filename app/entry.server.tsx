@@ -1,43 +1,19 @@
-import { renderToString } from "react-dom/server";
-import { CacheProvider } from "@emotion/react";
-import createEmotionServer from "@emotion/server/create-instance";
+import type { EntryContext } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
-import type { EntryContext } from "@remix-run/node"; // Depends on the runtime you choose
-
-import { ServerStyleContext } from "./context";
-import createEmotionCache from "./createEmotionCache";
+import { renderToString } from "react-dom/server";
 
 export default function handleRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
-  remixContext: EntryContext,
+  remixContext: EntryContext
 ) {
-  const cache = createEmotionCache();
-  const { extractCriticalToChunks } = createEmotionServer(cache);
-
-  const html = renderToString(
-    <ServerStyleContext.Provider value={null}>
-      <CacheProvider value={cache}>
-        <RemixServer context={remixContext} url={request.url} />
-      </CacheProvider>
-    </ServerStyleContext.Provider>,
+  let html = renderToString(
+    <RemixServer context={remixContext} url={request.url} />
   );
-
-  const chunks = extractCriticalToChunks(html);
-
-  const markup = renderToString(
-    <ServerStyleContext.Provider value={chunks.styles}>
-      <CacheProvider value={cache}>
-        <RemixServer context={remixContext} url={request.url} />
-      </CacheProvider>
-    </ServerStyleContext.Provider>,
-  );
-
-  responseHeaders.set("Content-Type", "text/html");
-
-  return new Response(`<!DOCTYPE html>${markup}`, {
+  html = "<!DOCTYPE html>\n" + html;
+  return new Response(html, {
+    headers: { "Content-Type": "text/html" },
     status: responseStatusCode,
-    headers: responseHeaders,
   });
 }
