@@ -1,6 +1,6 @@
 import { Session } from "@supabase/supabase-js";
 import { atom, onMount } from "nanostores";
-import { AuthState, InventoryBackend } from "./InventoryBackend";
+import { AuthState, InventoryBackend, InventoryItem } from "./InventoryBackend";
 import { singletonSupabase } from "./supabase";
 
 export class InventoryBackendSupabase implements InventoryBackend {
@@ -40,7 +40,15 @@ export class InventoryBackendSupabase implements InventoryBackend {
       };
     });
   }
-  logOut = async () => {
+
+  async logOut() {
     await this.supabase.auth.signOut();
-  };
+  }
+
+  async describeInventoryItems(options: { id?: string }) {
+    let query = this.supabase.from("inventory_items").select("*");
+    if (options.id) query = query.eq("id", options.id);
+    const { data: inventoryItems } = await query.throwOnError();
+    return inventoryItems as InventoryItem[];
+  }
 }

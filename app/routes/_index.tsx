@@ -1,4 +1,19 @@
+import {
+  Spinner,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
+} from "@chakra-ui/react";
 import type { MetaFunction } from "@remix-run/node";
+import { Await, defer, useLoaderData } from "@remix-run/react";
+import { Suspense } from "react";
+import { backend } from "~/backend";
+import { Link } from "~/ui/Link";
+import { MainContainer } from "~/ui/MainContainer";
 
 export const meta: MetaFunction = () => {
   return [
@@ -7,35 +22,64 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export default function Index() {
+export const clientLoader = async () => {
+  return defer({
+    inventoryItemsPromise: backend.describeInventoryItems({}),
+  });
+};
+
+function AppSpinner() {
   return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
-      <h1>Welcome to Remix</h1>
-      <ul>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/blog"
-            rel="noreferrer"
-          >
-            15m Quickstart Blog Tutorial
-          </a>
-        </li>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/jokes"
-            rel="noreferrer"
-          >
-            Deep Dive Jokes App Tutorial
-          </a>
-        </li>
-        <li>
-          <a target="_blank" href="https://remix.run/docs" rel="noreferrer">
-            Remix Docs
-          </a>
-        </li>
-      </ul>
-    </div>
+    <Spinner
+      thickness="4px"
+      speed="0.65s"
+      emptyColor="gray.200"
+      color="blue.500"
+      size="xl"
+    />
+  );
+}
+
+export default function Index() {
+  const { inventoryItemsPromise } = useLoaderData<typeof clientLoader>();
+  return (
+    <MainContainer>
+      <TableContainer>
+        <Table variant="simple">
+          <Thead>
+            <Tr>
+              <Th>Name</Th>
+              <Th>Description</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            <Suspense
+              fallback={
+                <Tr>
+                  <Td colSpan={2}>
+                    <AppSpinner />
+                  </Td>
+                </Tr>
+              }
+            >
+              <Await resolve={inventoryItemsPromise}>
+                {(inventoryItems) => (
+                  <>
+                    {inventoryItems.map((item) => (
+                      <Tr key={item.id}>
+                        <Td>
+                          <Link to={`/items/${item.id}`}>{item.name}</Link>
+                        </Td>
+                        <Td>{item.description}</Td>
+                      </Tr>
+                    ))}
+                  </>
+                )}
+              </Await>
+            </Suspense>
+          </Tbody>
+        </Table>
+      </TableContainer>
+    </MainContainer>
   );
 }

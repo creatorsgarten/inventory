@@ -9,7 +9,12 @@ export class InventoryBackendMock implements InventoryBackend {
       name: "Mock user",
     },
   });
+
   logOut = async () => {
     this.$authState.set({ type: "unauthenticated" });
+  };
+
+  describeInventoryItems = async () => {
+    return [];
   };
 }

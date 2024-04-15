@@ -1,7 +1,9 @@
-import { Box, Container, Divider, HStack, Heading } from "@chakra-ui/react";
+import { Box, Divider, HStack, Heading } from "@chakra-ui/react";
 import { useStore } from "@nanostores/react";
 import { FunctionComponent, PropsWithChildren } from "react";
 import { backend } from "~/backend";
+import { Link } from "~/ui/Link";
+import { MainContainer } from "~/ui/MainContainer";
 
 export const AppLayout: FunctionComponent<PropsWithChildren> = ({
   children,
@@ -11,7 +13,7 @@ export const AppLayout: FunctionComponent<PropsWithChildren> = ({
   return (
     <>
       <Box as="nav">
-        <Container maxW="container.xl" height={16}>
+        <MainContainer height={16}>
           <HStack h="100%" spacing={8}>
             <Box
               display={{
@@ -19,14 +21,18 @@ export const AppLayout: FunctionComponent<PropsWithChildren> = ({
                 md: "block",
               }}
             >
-              <Heading size={"md"}>Inventory</Heading>
+              <Heading size={"md"}>
+                <Link to="/" color="inherit">
+                  Inventory
+                </Link>
+              </Heading>
             </Box>
             <span>
               {state.type}
               {state.type === "authenticated" ? ` - ${state.user.name}` : null}
             </span>
           </HStack>
-        </Container>
+        </MainContainer>
         <Divider orientation="horizontal" />
       </Box>
       <Box mt={8} pb={8}>
