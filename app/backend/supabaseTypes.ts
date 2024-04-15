@@ -34,6 +34,27 @@ export type Database = {
   }
   public: {
     Tables: {
+      inventory_items: {
+        Row: {
+          created_at: string
+          description: string
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
       inventory_labels: {
         Row: {
           created_at: string
@@ -54,21 +75,21 @@ export type Database = {
           activity_payload: Json | null
           activity_type: string | null
           created_at: string
-          id: number
+          id: string
           user_id: string | null
         }
         Insert: {
           activity_payload?: Json | null
           activity_type?: string | null
           created_at?: string
-          id?: number
+          id?: string
           user_id?: string | null
         }
         Update: {
           activity_payload?: Json | null
           activity_type?: string | null
           created_at?: string
-          id?: number
+          id?: string
           user_id?: string | null
         }
         Relationships: []
@@ -93,7 +114,17 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      uuid7:
+        | {
+            Args: Record<PropertyKey, never>
+            Returns: string
+          }
+        | {
+            Args: {
+              p_timestamp: string
+            }
+            Returns: string
+          }
     }
     Enums: {
       [_ in never]: never

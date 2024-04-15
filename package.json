@@ -8,7 +8,8 @@
     "dev": "remix vite:dev",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
     "start": "remix-serve ./build/server/index.js",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "generate-types": "supabase gen types typescript --local > app/backend/supabaseTypes.ts"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.8.2",
