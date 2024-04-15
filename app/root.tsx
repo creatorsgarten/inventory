@@ -8,6 +8,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import "nprogress/nprogress.css";
 import React from "react";
 import "~/index.css";
 

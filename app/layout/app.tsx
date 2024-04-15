@@ -1,6 +1,8 @@
 import { Box, Divider, HStack, Heading } from "@chakra-ui/react";
 import { useStore } from "@nanostores/react";
-import { FunctionComponent, PropsWithChildren } from "react";
+import { useNavigation } from "@remix-run/react";
+import NProgress from "nprogress";
+import { FunctionComponent, PropsWithChildren, useEffect } from "react";
 import { backend } from "~/backend";
 import { backendMode } from "~/backend/backendMode";
 import { Link } from "~/ui/Link";
@@ -10,7 +12,16 @@ export const AppLayout: FunctionComponent<PropsWithChildren> = ({
   children,
 }) => {
   const state = useStore(backend.$authState);
-
+  const transition = useNavigation();
+  const loading = transition.state !== "idle";
+  useEffect(() => {
+    if (loading) {
+      NProgress.start();
+      return () => {
+        NProgress.done();
+      };
+    }
+  }, [loading]);
   return (
     <>
       <Box as="nav">
