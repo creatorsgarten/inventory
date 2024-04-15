@@ -1,8 +1,9 @@
 import { createClient } from "@supabase/supabase-js";
+import { backendMode } from "./backendMode";
 import { Database } from "./supabaseTypes";
 
 export const singletonSupabase =
-  typeof window !== "undefined" && window.location.hostname === "prod.localhost"
+  backendMode === "prod"
     ? createClient<Database>(
         "https://gfakhdrrqdphymgcbtfs.supabase.co",
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdmYWtoZHJycWRwaHltZ2NidGZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTI1NzQyNTQsImV4cCI6MjAyODE1MDI1NH0.W1bmYyKNF4VmQPix6hjE9GAhBbcET-jRKAXRrSupfKU"
