@@ -15,9 +15,13 @@ export interface InventoryBackend {
   /**
    * Lists all the inventory items
    */
-  describeInventoryItems: (options: {
-    id?: string;
-  }) => Promise<InventoryItem[]>;
+  describeInventoryItems: (
+    options: DescribeInventoryItemsOptions
+  ) => Promise<InventoryItem[]>;
+}
+
+export interface DescribeInventoryItemsOptions {
+  id?: string;
 }
 
 export type AuthState =

@@ -1,6 +1,11 @@
 import { Session } from "@supabase/supabase-js";
 import { atom, onMount } from "nanostores";
-import { AuthState, InventoryBackend, InventoryItem } from "./InventoryBackend";
+import {
+  AuthState,
+  DescribeInventoryItemsOptions,
+  InventoryBackend,
+  InventoryItem,
+} from "./InventoryBackend";
 import { singletonSupabase } from "./supabase";
 
 export class InventoryBackendSupabase implements InventoryBackend {
@@ -45,7 +50,7 @@ export class InventoryBackendSupabase implements InventoryBackend {
     await this.supabase.auth.signOut();
   }
 
-  async describeInventoryItems(options: { id?: string }) {
+  async describeInventoryItems(options: DescribeInventoryItemsOptions) {
     let query = this.supabase.from("inventory_items").select("*");
     if (options.id) query = query.eq("id", options.id);
     const { data: inventoryItems } = await query.throwOnError();
