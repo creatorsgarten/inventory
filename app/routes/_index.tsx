@@ -8,19 +8,11 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import type { MetaFunction } from "@remix-run/node";
 import { Await, defer, useLoaderData } from "@remix-run/react";
 import { Suspense } from "react";
 import { backend } from "~/backend";
 import { Link } from "~/ui/Link";
 import { MainContainer } from "~/ui/MainContainer";
-
-export const meta: MetaFunction = () => {
-  return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
-  ];
-};
 
 export const clientLoader = async () => {
   return defer({
