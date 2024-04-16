@@ -1,5 +1,11 @@
 import { Heading, Text } from "@chakra-ui/react";
-import { ClientLoaderFunctionArgs, useLoaderData } from "@remix-run/react";
+import {
+  ClientLoaderFunctionArgs,
+  MetaFunction,
+  json,
+  useLoaderData,
+} from "@remix-run/react";
+import type { SerializeFrom } from "@remix-run/server-runtime";
 import { backend } from "~/backend";
 import { MainContainer } from "~/ui/MainContainer";
 
@@ -16,7 +22,12 @@ export const clientLoader = async (args: ClientLoaderFunctionArgs) => {
   if (matchedItems.length > 1) {
     throw new Error("Multiple items returned for the same ID");
   }
-  return { item: matchedItems[0] };
+  return json({ item: matchedItems[0] });
+};
+
+export const meta: MetaFunction<typeof clientLoader> = (args) => {
+  const data = args.data as SerializeFrom<typeof clientLoader>;
+  return [{ title: data.item.name + " — Creatorsgarten Inventory" }];
 };
 
 export default function Index() {
@@ -25,6 +36,9 @@ export default function Index() {
     <MainContainer>
       <Heading mb="4">{item.name}</Heading>
       <Text fontSize="xl">{item.description}</Text>
+      <Text mt="8" whiteSpace="pre-line">
+        {item.notes}
+      </Text>
     </MainContainer>
   );
 }

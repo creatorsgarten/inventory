@@ -19,6 +19,9 @@ bun install
 # Start Supabase (only when you want to develop with local Supabase)
 bun supabase start
 
+# Get the URLs for the local Supabase instance
+bun supabase status
+
 # Start dev server
 bun dev
 ```
@@ -32,6 +35,9 @@ bun dev
 During development, you can directly make changes to your **local** database schema using Supabase Studio, available at `http://127.0.0.1:54323`. However, when you want to apply these changes to your **production** database, you need to create a migration script. Thankfully, Supabase CLI provides a tool to generate these migration scripts.
 
 ```sh
+# Generate TypeScript types for the database schema.
+bun generate-types
+
 # Diff schema changes to create a migration script.
 # This command creates a temporary database, applies all the current migrations,
 # and then compares the schema with the local database.

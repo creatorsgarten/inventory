@@ -17,8 +17,8 @@ import { AppLayout } from "~/layout/app";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
+    { title: "Creatorsgarten Inventory" },
+    { name: "description", content: "Inventory tracking system" },
     { viewport: "width=device-width,initial-scale=1" },
     { charset: "utf-8" },
   ];

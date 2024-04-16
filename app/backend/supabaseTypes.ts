@@ -40,18 +40,21 @@ export type Database = {
           description: string
           id: string
           name: string
+          notes: string
         }
         Insert: {
           created_at?: string
           description?: string
           id?: string
           name: string
+          notes?: string
         }
         Update: {
           created_at?: string
           description?: string
           id?: string
           name?: string
+          notes?: string
         }
         Relationships: []
       }
