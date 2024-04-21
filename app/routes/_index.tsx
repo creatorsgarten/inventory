@@ -1,18 +1,8 @@
-import {
-  Spinner,
-  Table,
-  TableContainer,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-} from "@chakra-ui/react";
-import { Await, defer, useLoaderData } from "@remix-run/react";
-import { Suspense } from "react";
+import { defer, useLoaderData } from "@remix-run/react";
+
+import { ItemListing } from "~/packlets/itemListing";
 
 import { backend } from "~/backend";
-import { Link } from "~/ui/Link";
 import { MainContainer } from "~/ui/MainContainer";
 
 export const clientLoader = async () => {
@@ -21,58 +11,10 @@ export const clientLoader = async () => {
   });
 };
 
-function AppSpinner() {
-  return (
-    <Spinner
-      thickness="4px"
-      speed="0.65s"
-      emptyColor="gray.200"
-      color="blue.500"
-      size="xl"
-    />
-  );
-}
-
 export default function Index() {
-  const { inventoryItemsPromise } = useLoaderData<typeof clientLoader>();
   return (
     <MainContainer>
-      <TableContainer>
-        <Table variant="simple">
-          <Thead>
-            <Tr>
-              <Th>Name</Th>
-              <Th>Description</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            <Suspense
-              fallback={
-                <Tr>
-                  <Td colSpan={2}>
-                    <AppSpinner />
-                  </Td>
-                </Tr>
-              }
-            >
-              <Await resolve={inventoryItemsPromise}>
-                {(inventoryItems) => (
-                  <>
-                    {inventoryItems.map((item) => (
-                      <Tr key={item.id}>
-                        <Td>
-                          <Link to={`/items/${item.id}`}>{item.name}</Link>
-                        </Td>
-                        <Td>{item.description}</Td>
-                      </Tr>
-                    ))}
-                  </>
-                )}
-              </Await>
-            </Suspense>
-          </Tbody>
-        </Table>
-      </TableContainer>
+      <ItemListing />
     </MainContainer>
   );
 }

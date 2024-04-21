@@ -10,7 +10,7 @@ export const Internal = () => {
   if (!isNonProd) return null;
 
   return (
-    <Box bg="red.500" py={0.5}>
+    <Box bg={backendMode === "prod" ? "red.500" : "yellow.500"} py={0.5}>
       <Text
         fontSize="sm"
         textTransform="uppercase"
