@@ -28,7 +28,9 @@
     "nanostores": "^0.10.3",
     "nprogress": "^0.2.0",
     "react": "^19.0.0-canary-4c12339ce-20240408",
-    "react-dom": "^19.0.0-canary-4c12339ce-20240408"
+    "react-dom": "^19.0.0-canary-4c12339ce-20240408",
+    "@react-buddy/ide-toolbox": "^2.4.0",
+    "@react-buddy/palette-chakra-ui": "^2.3.1"
   },
   "devDependencies": {
     "@remix-run/dev": "^2.8.1",

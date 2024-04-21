@@ -3,6 +3,7 @@ import { useStore } from "@nanostores/react";
 import { useNavigation } from "@remix-run/react";
 import NProgress from "nprogress";
 import { FunctionComponent, PropsWithChildren, useEffect } from "react";
+
 import { backend } from "~/backend";
 import { backendMode } from "~/backend/backendMode";
 import { Link } from "~/ui/Link";
@@ -14,6 +15,7 @@ export const AppLayout: FunctionComponent<PropsWithChildren> = ({
   const state = useStore(backend.$authState);
   const transition = useNavigation();
   const loading = transition.state !== "idle";
+
   useEffect(() => {
     if (loading) {
       NProgress.start();
@@ -22,6 +24,7 @@ export const AppLayout: FunctionComponent<PropsWithChildren> = ({
       };
     }
   }, [loading]);
+
   return (
     <>
       <Box as="nav">

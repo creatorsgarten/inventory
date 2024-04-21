@@ -1,4 +1,5 @@
 import { ReadableAtom } from "nanostores";
+
 import { Database } from "./supabaseTypes";
 
 export interface InventoryBackend {

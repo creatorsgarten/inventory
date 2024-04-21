@@ -4,6 +4,7 @@ import { useNavigate } from "@remix-run/react";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { useEffect, useRef } from "react";
+
 import { backend } from "~/backend";
 import { singletonSupabase } from "~/backend/supabase";
 

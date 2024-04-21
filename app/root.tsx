@@ -1,4 +1,4 @@
-// root.tsx
+import React from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 import { LinksFunction, MetaFunction } from "@remix-run/node";
 import {
@@ -9,11 +9,13 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import "nprogress/nprogress.css";
-import React from "react";
-import "~/index.css";
+import { DevSupport } from "@react-buddy/ide-toolbox";
 
+import "~/index.css";
 import logo from "~/branding/creatorsgarten.svg";
-import { AppLayout } from "~/layout/app";
+import { AppLayout } from "~/packlets/layout/app";
+
+import { ComponentPreviews, useInitial } from "../dev";
 
 export const meta: MetaFunction = () => {
   return [
@@ -56,9 +58,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <ChakraProvider>
-      <AppLayout>
-        <Outlet />
-      </AppLayout>
+      <DevSupport
+        ComponentPreviews={ComponentPreviews}
+        useInitialHook={useInitial}
+      >
+        <AppLayout>
+          <Outlet />
+        </AppLayout>
+      </DevSupport>
     </ChakraProvider>
   );
 }

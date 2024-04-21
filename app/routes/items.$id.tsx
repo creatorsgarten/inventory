@@ -5,9 +5,11 @@ import {
   json,
   useLoaderData,
 } from "@remix-run/react";
-import type { SerializeFrom } from "@remix-run/server-runtime";
+
 import { backend } from "~/backend";
 import { MainContainer } from "~/ui/MainContainer";
+
+import type { SerializeFrom } from "@remix-run/server-runtime";
 
 export const clientLoader = async (args: ClientLoaderFunctionArgs) => {
   const matchedItems = await backend.describeInventoryItems({

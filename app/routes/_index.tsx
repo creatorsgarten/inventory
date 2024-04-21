@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { Await, defer, useLoaderData } from "@remix-run/react";
 import { Suspense } from "react";
+
 import { backend } from "~/backend";
 import { Link } from "~/ui/Link";
 import { MainContainer } from "~/ui/MainContainer";

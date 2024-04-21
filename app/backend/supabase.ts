@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+
 import { backendMode } from "./backendMode";
 import { Database } from "./supabaseTypes";
 

@@ -24,6 +24,41 @@ module.exports = {
   // Base config
   extends: ["eslint:recommended"],
 
+  rules: {
+    'import/order': [
+      'error',
+      {
+        pathGroups: [
+          {
+            pattern: 'react',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: '~/packlets/*',
+            group: 'internal',
+            position: 'before',
+          },
+          {
+            pattern: '~*',
+            group: 'internal',
+            position: 'after',
+          },
+        ],
+        groups: [
+          'builtin',
+          'external',
+          'internal',
+          'parent',
+          'sibling',
+          'index',
+          'type',
+        ],
+        'newlines-between': 'always',
+      },
+    ],
+  },
+
   overrides: [
     // React
     {
