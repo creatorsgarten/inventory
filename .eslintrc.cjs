@@ -25,6 +25,13 @@ module.exports = {
   extends: ["eslint:recommended"],
 
   rules: {
+    "react/jsx-curly-brace-presence": [
+      'error',
+      {
+        props: 'never',
+        children: 'never',
+      },
+    ],
     'import/order': [
       'error',
       {
