@@ -1,8 +1,20 @@
-import { Box, Divider, Heading, HStack, Spacer } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Divider,
+  Heading,
+  HStack,
+  Spacer,
+  Wrap,
+  WrapItem,
+  Text,
+} from "@chakra-ui/react";
 
 import { Link } from "~/ui/Link";
 import { MainContainer } from "~/ui/MainContainer";
 import { Auth } from "~/packlets/layout/auth";
+import { Icon } from "~/packlets/commons/icon";
+import { menus } from "~/packlets/layout/menus";
 
 export const Navbar = () => {
   return (
@@ -24,6 +36,27 @@ export const Navbar = () => {
           <Spacer />
           <Auth />
         </HStack>
+      </MainContainer>
+      <Divider orientation="horizontal" />
+      <MainContainer>
+        <Wrap spacing={4} py={1}>
+          {menus.map((menu) => (
+            <WrapItem key={`dash-layout-${menu.name}`}>
+              <Button
+                as={Link}
+                to={menu.to}
+                variant="ghost"
+                size="sm"
+                textDecoration="none"
+              >
+                <HStack spacing={2}>
+                  <Icon icon={menu.icon} />
+                  <Text>{menu.name}</Text>
+                </HStack>
+              </Button>
+            </WrapItem>
+          ))}
+        </Wrap>
       </MainContainer>
       <Divider orientation="horizontal" />
     </Box>
