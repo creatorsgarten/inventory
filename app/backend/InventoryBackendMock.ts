@@ -1,10 +1,10 @@
-import { atom } from "nanostores";
+import { atom } from "nanostores"
 
 import {
   AuthState,
   DescribeInventoryItemsOptions,
   InventoryBackend,
-} from "./InventoryBackend";
+} from "./InventoryBackend"
 
 export class InventoryBackendMock implements InventoryBackend {
   $authState = atom<AuthState>({
@@ -13,11 +13,11 @@ export class InventoryBackendMock implements InventoryBackend {
       uid: "dummy",
       name: "Mock user",
     },
-  });
+  })
 
   logOut = async () => {
-    this.$authState.set({ type: "unauthenticated" });
-  };
+    this.$authState.set({ type: "unauthenticated" })
+  }
 
   describeInventoryItems = async (options: DescribeInventoryItemsOptions) => {
     const items = [
@@ -39,7 +39,7 @@ export class InventoryBackendMock implements InventoryBackend {
         name: "XLR cable, 6m",
         description: "KIRLIN MW-480 3M BKB HS 24AWG",
       },
-    ];
-    return options.id ? items.filter((item) => item.id === options.id) : items;
-  };
+    ]
+    return options.id ? items.filter((item) => item.id === options.id) : items
+  }
 }

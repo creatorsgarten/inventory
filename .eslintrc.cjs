@@ -24,6 +24,8 @@ module.exports = {
   // Base config
   extends: ["eslint:recommended"],
 
+  plugins: ["@stylistic"],
+
   rules: {
     "react/jsx-curly-brace-presence": [
       'error',
@@ -64,6 +66,8 @@ module.exports = {
         'newlines-between': 'always',
       },
     ],
+    '@stylistic/indent': ['error', 2],
+    '@stylistic/semi': ['error', 'never'],
   },
 
   overrides: [
@@ -123,4 +127,4 @@ module.exports = {
       },
     },
   ],
-};
+}

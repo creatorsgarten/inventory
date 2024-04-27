@@ -1,21 +1,23 @@
-import React from "react";
-import { ChakraProvider } from "@chakra-ui/react";
-import { LinksFunction, MetaFunction } from "@remix-run/node";
+import React from "react"
+import { ChakraProvider } from "@chakra-ui/react"
+import { LinksFunction, MetaFunction } from "@remix-run/node"
 import {
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
-} from "@remix-run/react";
-import "nprogress/nprogress.css";
-import { DevSupport } from "@react-buddy/ide-toolbox";
+} from "@remix-run/react"
+import "nprogress/nprogress.css"
+import { DevSupport } from "@react-buddy/ide-toolbox"
+import "@fontsource-variable/noto-sans-thai"
 
-import "~/index.css";
-import logo from "~/branding/creatorsgarten.svg";
-import { AppLayout } from "~/packlets/layout/app";
+import logo from "~/branding/creatorsgarten.svg"
+import { AppLayout } from "~/packlets/layout/app"
+import { chakraTheme } from "~/packlets/layout/chakraTheme"
+import "~/index.css"
 
-import { ComponentPreviews, useInitial } from "../dev";
+import { ComponentPreviews, useInitial } from "../dev"
 
 export const meta: MetaFunction = () => {
   return [
@@ -23,8 +25,8 @@ export const meta: MetaFunction = () => {
     { name: "description", content: "Inventory tracking system" },
     { viewport: "width=device-width,initial-scale=1" },
     { charset: "utf-8" },
-  ];
-};
+  ]
+}
 
 export const links: LinksFunction = () => {
   return [
@@ -34,8 +36,8 @@ export const links: LinksFunction = () => {
       rel: "stylesheet",
       href: "https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap",
     },
-  ];
-};
+  ]
+}
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -53,12 +55,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Scripts />
       </body>
     </html>
-  );
+  )
 }
 
 export default function App() {
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={chakraTheme}>
       <DevSupport
         ComponentPreviews={ComponentPreviews}
         useInitialHook={useInitial}
@@ -68,7 +70,7 @@ export default function App() {
         </AppLayout>
       </DevSupport>
     </ChakraProvider>
-  );
+  )
 }
 
 export function HydrateFallback() {
@@ -86,5 +88,5 @@ export function HydrateFallback() {
     >
       <img src={logo} style={{ width: 128 }} alt="Creatorsgarten (loading)" />
     </div>
-  );
+  )
 }

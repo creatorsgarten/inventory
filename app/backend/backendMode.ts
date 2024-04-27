@@ -1,4 +1,4 @@
-export let backendMode: "mock" | "local" | "prod" = "mock";
+export let backendMode: "mock" | "local" | "prod" = "mock"
 
 if (typeof window !== "undefined") {
   if (
@@ -6,10 +6,10 @@ if (typeof window !== "undefined") {
     window.location.hostname === "127.0.0.1" ||
     window.location.hostname === "::1"
   ) {
-    backendMode = "local";
+    backendMode = "local"
   } else if (window.location.hostname === "mock.localhost") {
-    backendMode = "mock";
+    backendMode = "mock"
   } else {
-    backendMode = "prod";
+    backendMode = "prod"
   }
 }

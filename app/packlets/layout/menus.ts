@@ -20,4 +20,4 @@ export const menus: Menu[] = [
     name: "Tags",
     to: "/tags",
   },
-];
+]

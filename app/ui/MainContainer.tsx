@@ -1,4 +1,4 @@
-import { Container, ContainerProps } from "@chakra-ui/react";
+import { Container, ContainerProps } from "@chakra-ui/react"
 
 export interface MainContainer extends ContainerProps {}
 
@@ -7,5 +7,5 @@ export function MainContainer(props: MainContainer) {
     <Container maxW="container.xl" {...props}>
       {props.children}
     </Container>
-  );
+  )
 }

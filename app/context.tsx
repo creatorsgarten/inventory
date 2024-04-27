@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext } from "react"
 
 export interface ServerStyleContextData {
   key: string;
@@ -8,7 +8,7 @@ export interface ServerStyleContextData {
 
 export const ServerStyleContext = createContext<
   ServerStyleContextData[] | null
->(null);
+>(null)
 
 export interface ClientStyleContextData {
   reset: () => void;
@@ -16,4 +16,4 @@ export interface ClientStyleContextData {
 
 export const ClientStyleContext = createContext<ClientStyleContextData | null>(
   null,
-);
+)

@@ -1,11 +1,11 @@
-import { Fragment } from "react";
+import { Fragment } from "react"
 import {
   Category,
   Component,
   Variant,
   Palette,
-} from "@react-buddy/ide-toolbox";
-import ChakraPalette from "@react-buddy/palette-chakra-ui";
+} from "@react-buddy/ide-toolbox"
+import ChakraPalette from "@react-buddy/palette-chakra-ui"
 
 export const PaletteTree = () => (
   <Palette>
@@ -18,8 +18,8 @@ export const PaletteTree = () => (
     </Category>
     <ChakraPalette />
   </Palette>
-);
+)
 
 export function ExampleLoaderComponent() {
-  return <Fragment>Loading...</Fragment>;
+  return <Fragment>Loading...</Fragment>
 }

@@ -1,6 +1,6 @@
-import { ReadableAtom } from "nanostores";
+import { ReadableAtom } from "nanostores"
 
-import { Database } from "./supabaseTypes";
+import { Database } from "./supabaseTypes"
 
 export interface InventoryBackend {
   /**
@@ -28,7 +28,7 @@ export interface DescribeInventoryItemsOptions {
 export type AuthState =
   | { type: "loading" }
   | { type: "authenticated"; user: AuthUser }
-  | { type: "unauthenticated" };
+  | { type: "unauthenticated" }
 
 export interface AuthUser {
   uid: string;
@@ -36,6 +36,6 @@ export interface AuthUser {
 }
 
 type TableRow<K extends keyof Database["public"]["Tables"]> =
-  Database["public"]["Tables"][K]["Row"];
+  Database["public"]["Tables"][K]["Row"]
 
 export interface InventoryItem extends TableRow<"inventory_items"> {}

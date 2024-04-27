@@ -8,13 +8,13 @@ import {
   Wrap,
   WrapItem,
   Text,
-} from "@chakra-ui/react";
+} from "@chakra-ui/react"
 
-import { Link } from "~/ui/Link";
-import { MainContainer } from "~/ui/MainContainer";
-import { Auth } from "~/packlets/layout/auth";
-import { Icon } from "~/packlets/commons/icon";
-import { menus } from "~/packlets/layout/menus";
+import { Link } from "~/ui/Link"
+import { MainContainer } from "~/ui/MainContainer"
+import { Auth } from "~/packlets/layout/auth"
+import { Icon } from "~/packlets/commons/icon"
+import { menus } from "~/packlets/layout/menus"
 
 export const Navbar = () => {
   return (
@@ -54,5 +54,5 @@ export const Navbar = () => {
       </MainContainer>
       <Divider orientation="horizontal" />
     </Box>
-  );
-};
+  )
+}

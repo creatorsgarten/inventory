@@ -119,15 +119,15 @@ export type Database = {
     Functions: {
       uuid7:
         | {
-            Args: Record<PropertyKey, never>
-            Returns: string
-          }
+          Args: Record<PropertyKey, never>
+          Returns: string
+        }
         | {
-            Args: {
-              p_timestamp: string
-            }
-            Returns: string
+          Args: {
+            p_timestamp: string
           }
+          Returns: string
+        }
     }
     Enums: {
       [_ in never]: never
@@ -330,16 +330,16 @@ export type Tables<
 > = PublicTableNameOrOptions extends { schema: keyof Database }
   ? (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
       Database[PublicTableNameOrOptions["schema"]]["Views"])[TableName] extends {
-      Row: infer R
-    }
+    Row: infer R
+  }
     ? R
     : never
   : PublicTableNameOrOptions extends keyof (PublicSchema["Tables"] &
         PublicSchema["Views"])
     ? (PublicSchema["Tables"] &
         PublicSchema["Views"])[PublicTableNameOrOptions] extends {
-        Row: infer R
-      }
+      Row: infer R
+    }
       ? R
       : never
     : never
@@ -353,14 +353,14 @@ export type TablesInsert<
     : never = never,
 > = PublicTableNameOrOptions extends { schema: keyof Database }
   ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Insert: infer I
-    }
+    Insert: infer I
+  }
     ? I
     : never
   : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
     ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
-        Insert: infer I
-      }
+      Insert: infer I
+    }
       ? I
       : never
     : never
@@ -374,14 +374,14 @@ export type TablesUpdate<
     : never = never,
 > = PublicTableNameOrOptions extends { schema: keyof Database }
   ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Update: infer U
-    }
+    Update: infer U
+  }
     ? U
     : never
   : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
     ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
-        Update: infer U
-      }
+      Update: infer U
+    }
       ? U
       : never
     : never

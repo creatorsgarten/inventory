@@ -1,8 +1,8 @@
-import { SortableHeader } from "@rayriffy/table";
-import { ColumnDef } from "@tanstack/table-core";
-import { HStack, Text } from "@chakra-ui/react";
+import { SortableHeader } from "@rayriffy/table"
+import { ColumnDef } from "@tanstack/table-core"
+import { HStack, Text } from "@chakra-ui/react"
 
-import { InventoryItem } from "~/backend/InventoryBackend";
+import { InventoryItem } from "~/backend/InventoryBackend"
 
 export const columns: ColumnDef<InventoryItem>[] = [
   {
@@ -21,4 +21,4 @@ export const columns: ColumnDef<InventoryItem>[] = [
     id: "Description",
     accessorKey: "description",
   },
-];
+]
