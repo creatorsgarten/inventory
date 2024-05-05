@@ -10,7 +10,6 @@ import {
   WrapItem,
   Text,
 } from "@chakra-ui/react"
-import { Link } from "@remix-run/react"
 
 import { Link } from "~/ui/Link"
 import { MainContainer } from "~/ui/MainContainer"
@@ -31,7 +30,7 @@ export const Navbar = () => {
 
           <Spacer />
           <HStack>
-            <IconButton as={Link} to="/scan" aria-label='Scan Items' icon={<Icon icon="lucide:scan-line" />} />
+            <IconButton as={Link} variant="black" to="/scan" aria-label='Scan Items' icon={<Icon icon="lucide:scan-line" />} />
             <Auth />
           </HStack>
         </HStack>

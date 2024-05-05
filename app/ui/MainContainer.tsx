@@ -1,8 +1,9 @@
 import { Container, ContainerProps } from "@chakra-ui/react"
+import { FunctionComponent } from 'react'
 
 export interface MainContainer extends ContainerProps {}
 
-export function MainContainer(props: MainContainer) {
+export const MainContainer: FunctionComponent<MainContainer> = props => {
   return (
     <Container maxW="container.xl" {...props}>
       {props.children}
