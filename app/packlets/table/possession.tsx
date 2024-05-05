@@ -12,7 +12,7 @@ interface Props {
 
 export const Possession: FunctionComponent<Props> = ({ type, id }) => {
   const node = (
-    <HStack>
+    <HStack textColor="black">
       <Icon icon={type === PossessionType.Container ? 'lucide:container' : 'lucide:user'} />
       <Text fontWeight="medium">{id}</Text>
     </HStack>
