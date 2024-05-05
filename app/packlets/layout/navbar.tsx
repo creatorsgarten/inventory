@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  IconButton,
   Divider,
   Heading,
   HStack,
@@ -9,6 +10,7 @@ import {
   WrapItem,
   Text,
 } from "@chakra-ui/react"
+import { Link } from "@remix-run/react"
 
 import { Link } from "~/ui/Link"
 import { MainContainer } from "~/ui/MainContainer"
@@ -28,7 +30,10 @@ export const Navbar = () => {
           </Heading>
 
           <Spacer />
-          <Auth />
+          <HStack>
+            <IconButton as={Link} to="/scan" aria-label='Scan Items' icon={<Icon icon="lucide:scan-line" />} />
+            <Auth />
+          </HStack>
         </HStack>
       </MainContainer>
       <Divider orientation="horizontal" />

@@ -11,6 +11,7 @@ export const chakraTheme = extendTheme({
       variants: {
         black: defineStyle(() => {
           return {
+            lineHeight: 0,
             color: "white",
             bg: "gray.800",
             _hover: {
