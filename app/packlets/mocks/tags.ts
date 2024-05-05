@@ -10,8 +10,8 @@ export const mockTags: Tag[] = [
       id: 'itemid01',
       type: TagType.Item,
     },
-    createdAt: dayjs().subtract(2, 'hour'),
-    updatedAt: dayjs().subtract(5, 'minute'),
+    createdAt: dayjs().subtract(2, 'hour').toISOString(),
+    updatedAt: dayjs().subtract(5, 'minute').toISOString(),
   },
   {
     id: 'CG00002',
@@ -19,13 +19,13 @@ export const mockTags: Tag[] = [
       id: 'container01',
       type: TagType.Container,
     },
-    createdAt: dayjs().subtract(4, 'day'),
-    updatedAt: dayjs().subtract(15, 'minute'),
+    createdAt: dayjs().subtract(4, 'day').toISOString(),
+    updatedAt: dayjs().subtract(15, 'minute').toISOString(),
   },
   {
     id: 'CG00003',
     link: null,
-    createdAt: dayjs(),
-    updatedAt: dayjs(),
+    createdAt: dayjs().toISOString(),
+    updatedAt: dayjs().toISOString(),
   },
 ]

@@ -1,12 +1,11 @@
-import { Dayjs } from 'dayjs'
-import { Pool } from 'undici-types'
-
 import {
   ContainerType,
   PossessionType,
   TagType,
   Action,
 } from '~/packlets/commons/constants'
+
+export type ISOTimestamp = string
 
 export interface Tag {
   id: string
@@ -15,33 +14,37 @@ export interface Tag {
     id: string
     type: TagType
   } | null
-  createdAt: Dayjs
-  updatedAt: Dayjs
+  createdAt: ISOTimestamp
+  updatedAt: ISOTimestamp
 }
 
 export interface Item {
   id: string
   name: string
   description: string
+  notes: string
   imageUrl?: string
   type: TagType.Item
+  tagId?: string
   possession: {
     type: PossessionType
     // if a possession type is user, then id is user id.
     // otherwise, it's container id.
     id: string
   }
-  createdAt: Dayjs
-  updatedAt: Dayjs
+  createdAt: ISOTimestamp
+  updatedAt: ISOTimestamp
 }
 
 export interface Container {
   id: string
   name: string
   description: string
+  notes: string
   imageUrl?: string
   type: TagType.Container
   containerType: ContainerType
+  tagId?: string
   // possession can be null if a container is a place
   possession: {
     type: PossessionType
@@ -49,8 +52,8 @@ export interface Container {
     // otherwise, it's container id.
     id: string
   } | null
-  createdAt: Dayjs
-  updatedAt: Dayjs
+  createdAt: ISOTimestamp
+  updatedAt: ISOTimestamp
 }
 
 export interface Log {
@@ -73,5 +76,5 @@ export interface Log {
     type?: PossessionType | TagType
 
   }
-  createdAt: Dayjs
+  createdAt: ISOTimestamp
 }

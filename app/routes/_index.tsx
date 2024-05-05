@@ -3,13 +3,13 @@ import { Button, Heading, HStack, Spacer, VStack } from "@chakra-ui/react"
 
 import { ItemListing } from "~/packlets/itemListing"
 
-import { backend } from "~/backend"
 import { MainContainer } from "~/ui/MainContainer"
 import { Icon } from '~/packlets/commons/icon'
+import { getItems } from '~/packlets/data/getItems'
 
 export const clientLoader = async () => {
   return defer({
-    inventoryItemsPromise: backend.describeInventoryItems({}),
+    getItems: getItems(),
   })
 }
 

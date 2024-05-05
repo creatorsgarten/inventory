@@ -7,12 +7,12 @@ import { columns } from "~/packlets/itemListing/columns"
 import { Spinner } from "~/packlets/layout/spinner"
 
 export const ItemListing = () => {
-  const { inventoryItemsPromise } = useLoaderData<typeof clientLoader>()
+  const { getItems } = useLoaderData<typeof clientLoader>()
 
   return (
     <Suspense fallback={<Spinner />}>
-      <Await resolve={inventoryItemsPromise}>
-        {(inventoryItems) => <Table data={inventoryItems} columns={columns} />}
+      <Await resolve={getItems}>
+        {items => <Table data={items} columns={columns} />}
       </Await>
     </Suspense>
   )
