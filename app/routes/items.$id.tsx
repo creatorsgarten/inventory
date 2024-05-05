@@ -6,8 +6,11 @@ import {
   useLoaderData,
 } from "@remix-run/react"
 
+import { Timeline } from '~/packlets/timeline'
+
 import { MainContainer } from "~/ui/MainContainer"
 import { getItemById } from '~/packlets/data/getItemById'
+import { getItemLogs } from '~/packlets/data/getItemLogs'
 
 import type { SerializeFrom } from "@remix-run/server-runtime"
 
@@ -25,7 +28,9 @@ export const clientLoader = async (args: ClientLoaderFunctionArgs) => {
     })
   }
 
-  return json({ item: matchedItem })
+  const logs = await getItemLogs(args.params.id)
+
+  return json({ item: matchedItem, logs })
 }
 
 export const meta: MetaFunction<typeof clientLoader> = (args) => {
@@ -33,8 +38,8 @@ export const meta: MetaFunction<typeof clientLoader> = (args) => {
   return [{ title: data.item.name + " — Creatorsgarten Inventory" }]
 }
 
-export default function Index() {
-  const { item } = useLoaderData<typeof clientLoader>()
+const Page = () => {
+  const { item, logs } = useLoaderData<typeof clientLoader>()
 
   return (
     <MainContainer>
@@ -43,6 +48,9 @@ export default function Index() {
       <Text mt="8" whiteSpace="pre-line">
         {item.notes}
       </Text>
+      <Timeline name="Item" logs={logs} />
     </MainContainer>
   )
 }
+
+export default Page

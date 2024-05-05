@@ -3,10 +3,10 @@ import { Table } from "@rayriffy/table"
 import { Suspense } from "react"
 
 import { clientLoader } from "~/routes/_index"
-import { columns } from "~/packlets/itemListing/columns"
+import { columns } from "~/packlets/items/columns"
 import { Spinner } from "~/packlets/layout/spinner"
 
-export const ItemListing = () => {
+export const ItemsTable = () => {
   const { getItems } = useLoaderData<typeof clientLoader>()
 
   return (

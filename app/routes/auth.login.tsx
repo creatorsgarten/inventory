@@ -8,7 +8,7 @@ import { useEffect, useRef } from "react"
 import { backend } from "~/backend"
 import { singletonSupabase } from "~/backend/supabase"
 
-export default function AuthPage() {
+const Page = () => {
   const navigate = useNavigate()
   const authState = useStore(backend.$authState)
 
@@ -34,3 +34,5 @@ export default function AuthPage() {
     </div>
   )
 }
+
+export default Page

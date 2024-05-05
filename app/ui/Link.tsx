@@ -7,7 +7,6 @@ export interface Link extends Omit<RemixLinkProps, "color">, LinkProps {}
 export function Link(props: Link) {
   return (
     <ChakraLink
-      color="teal.500"
       as={ReactRouterLink}
       _hover={{ textDecoration: "none" }}
       {...props}

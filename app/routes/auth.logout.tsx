@@ -8,7 +8,7 @@ export const clientAction = async () => {
   return redirect("/")
 }
 
-export default function LogoutPage() {
+const Page = () => {
   return (
     <div>
       <Container maxW="md" height={16}>
@@ -21,3 +21,5 @@ export default function LogoutPage() {
     </div>
   )
 }
+
+export default Page

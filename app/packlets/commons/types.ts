@@ -44,6 +44,7 @@ export interface Container {
   imageUrl?: string
   type: TagType.Container
   containerType: ContainerType
+  items: number
   tagId?: string
   // possession can be null if a container is a place
   possession: {

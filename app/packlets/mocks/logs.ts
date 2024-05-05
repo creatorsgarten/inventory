@@ -23,7 +23,7 @@ export const mockItemLogs: Log[] = [
       type: TagType.Item
     },
     target: {
-      id: 'tag01'
+      id: 'CG00001'
     },
     createdAt: dayjs('2021-01-01').toISOString()
   },
@@ -163,7 +163,7 @@ export const mockTagLogs: Log[] = [
     id: 'log12',
     action: Action.Created,
     node: {
-      id: 'tag01',
+      id: 'CG00001',
     },
     createdAt: dayjs('2020-12-31').toISOString()
   },
@@ -176,7 +176,7 @@ export const mockTagLogs: Log[] = [
       type: TagType.Item
     },
     target: {
-      id: 'tag01'
+      id: 'CG00001'
     },
     createdAt: dayjs('2021-01-01').toISOString()
   },

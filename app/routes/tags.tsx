@@ -1,14 +1,14 @@
 import { defer } from "@remix-run/react"
 import { Button, Heading, HStack, Spacer, VStack } from "@chakra-ui/react"
 
-import { ItemsTable } from "~/packlets/items/table"
 import { MainContainer } from "~/ui/MainContainer"
 import { Icon } from '~/packlets/commons/icon'
-import { getItems } from '~/packlets/data/getItems'
+import { getTags } from '~/packlets/data/getTags'
+import { TagsTable } from '~/packlets/tags/table'
 
 export const clientLoader = async () => {
   return defer({
-    getItems: getItems(),
+    getTags: getTags(),
   })
 }
 
@@ -17,14 +17,14 @@ const Page = () => {
     <MainContainer>
       <VStack spacing={4} align="stretch">
         <HStack>
-          <Heading size="lg">Items</Heading>
+          <Heading size="lg">Tags</Heading>
           <Spacer />
           <Button variant="black">
             <Icon icon="lucide:plus" mr={2} />
-            Add Item
+            Add Tag
           </Button>
         </HStack>
-        <ItemsTable />
+        <TagsTable />
       </VStack>
     </MainContainer>
   )
