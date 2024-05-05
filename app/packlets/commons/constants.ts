@@ -16,3 +16,12 @@ export enum PossessionType {
   // it's currently in a container
   Container = 'container',
 }
+
+export enum Action {
+  CheckIn = 'check-in',
+  Tagged = 'tag',
+  Created = 'created',
+  Updated = 'updated',
+  PutIn = 'put-in',
+  PutOut = 'put-out',
+}
