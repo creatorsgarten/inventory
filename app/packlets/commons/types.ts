@@ -17,6 +17,9 @@ export interface Tag {
 
 export interface Item {
   id: string
+  name: string
+  description: string
+  imageUrl?: string
   type: TagType.Item
   possession: {
     type: PossessionType
@@ -30,6 +33,9 @@ export interface Item {
 
 export interface Container {
   id: string
+  name: string
+  description: string
+  imageUrl?: string
   type: TagType.Container
   containerType: ContainerType
   // possession can be null if a container is a place
