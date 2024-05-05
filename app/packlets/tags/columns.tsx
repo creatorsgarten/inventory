@@ -4,7 +4,7 @@ import { HStack, IconButton } from "@chakra-ui/react"
 import dayjs from 'dayjs'
 
 import { Icon } from '~/packlets/commons/icon'
-import { Link } from '~/ui/Link'
+import { Link } from '~/packlets/commons/link'
 import { Tag } from '~/packlets/commons/types'
 import { Linked } from '~/packlets/table/linked'
 

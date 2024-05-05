@@ -11,8 +11,8 @@ import {
   Text,
 } from "@chakra-ui/react"
 
-import { Link } from "~/ui/Link"
-import { MainContainer } from "~/ui/MainContainer"
+import { Link } from "~/packlets/commons/link"
+import { MainContainer } from "~/packlets/layout/mainContainer"
 import { Auth } from "~/packlets/layout/auth"
 import { Icon } from "~/packlets/commons/icon"
 import { menus } from "~/packlets/layout/menus"

@@ -8,7 +8,7 @@ import {
 
 import { Timeline } from '~/packlets/timeline'
 
-import { MainContainer } from "~/ui/MainContainer"
+import { MainContainer } from "~/packlets/layout/mainContainer"
 import { getItemById } from '~/packlets/data/getItemById'
 import { getItemLogs } from '~/packlets/data/getItemLogs'
 

@@ -2,7 +2,7 @@ import { FunctionComponent, memo } from 'react'
 import { HStack, Text } from '@chakra-ui/react'
 import { Icon } from 'react-iconify-icon-wrapper'
 
-import { Link } from '~/ui/Link'
+import { Link } from '~/packlets/commons/link'
 
 interface Props {
   id: string

@@ -3,7 +3,7 @@ import { Icon } from 'react-iconify-icon-wrapper'
 import { FunctionComponent } from 'react'
 
 import { TagType } from '~/packlets/commons/constants'
-import { Link } from '~/ui/Link'
+import { Link } from '~/packlets/commons/link'
 
 interface Props {
   type: TagType

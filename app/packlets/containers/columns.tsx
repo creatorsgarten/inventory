@@ -4,7 +4,7 @@ import { HStack, IconButton } from "@chakra-ui/react"
 
 import { Container } from '~/packlets/commons/types'
 import { Icon } from '~/packlets/commons/icon'
-import { Link } from '~/ui/Link'
+import { Link } from '~/packlets/commons/link'
 import { Tag } from '~/packlets/table/tag'
 import { Possession } from '~/packlets/table/possession'
 

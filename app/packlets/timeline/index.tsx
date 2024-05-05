@@ -6,7 +6,7 @@ import { Icon } from '~/packlets/commons/icon'
 import { Log } from '~/packlets/commons/types'
 import { BaseBadge } from '~/packlets/timeline/baseBadge'
 import { Action, PossessionType } from '~/packlets/commons/constants'
-import { Link } from '~/ui/Link'
+import { Link } from '~/packlets/commons/link'
 
 interface Props {
   name: string

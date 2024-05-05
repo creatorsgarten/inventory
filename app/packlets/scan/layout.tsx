@@ -9,7 +9,7 @@ import {
   VStack,
 } from '@chakra-ui/react'
 
-import { MainContainer } from '~/ui/MainContainer'
+import { MainContainer } from '~/packlets/layout/mainContainer'
 
 interface Props extends PropsWithChildren {
   title: string
