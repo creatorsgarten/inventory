@@ -6,7 +6,6 @@ import {
   HStack,
   Spacer,
   Text,
-  VStack,
 } from '@chakra-ui/react'
 
 import { MainContainer } from '~/packlets/layout/mainContainer'

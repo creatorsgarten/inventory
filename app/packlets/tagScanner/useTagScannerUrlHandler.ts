@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from '@remix-run/react'
 import { useMemo } from 'react'
 
-import { ScanMethod } from '~/packlets/scan/constants'
+import { ScanMethod } from '~/packlets/tagScanner/constants'
 
 interface Handler {
   method: ScanMethod | null
@@ -12,7 +12,7 @@ interface Handler {
   resetItem: () => void
 }
 
-export const useStepsUrlHandler = (): Handler => {
+export const useTagScannerUrlHandler = (): Handler => {
   const location = useLocation()
   const navigate = useNavigate()
   const searchParams = useMemo(() => new URLSearchParams(location.search), [location.search])

@@ -1,11 +1,12 @@
 import { Box, Text } from '@chakra-ui/react'
 import { Suspense } from 'react'
 
-import { QRScanner } from 'app/packlets/qrCodeScanner'
-import { useStepsUrlHandler } from '~/packlets/scan/useStepsUrlHandler'
+import { QRScanner } from '~/packlets/qrCodeScanner'
+
+import { useTagScannerUrlHandler } from '~/packlets/tagScanner/useTagScannerUrlHandler'
 
 export const QR = () => {
-  const { setItem } = useStepsUrlHandler()
+  const { setItem } = useTagScannerUrlHandler()
 
   const fallback = (
     <Box w="100%" border="1px" rounded="xl" py={16} borderStyle="dashed" borderColor="gray.500" textAlign="center">

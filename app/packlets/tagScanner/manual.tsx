@@ -2,10 +2,10 @@ import { HStack, PinInput, PinInputField, VStack, Text } from '@chakra-ui/react'
 import { useState } from 'react'
 
 import { parseId } from '~/packlets/commons/parseId'
-import { useStepsUrlHandler } from '~/packlets/scan/useStepsUrlHandler'
+import { useTagScannerUrlHandler } from '~/packlets/tagScanner/useTagScannerUrlHandler'
 
 export const Manual = () => {
-  const { setItem } = useStepsUrlHandler()
+  const { setItem } = useTagScannerUrlHandler()
 
   const [value, setValue] = useState('')
   const handleInput = (input: string) => {

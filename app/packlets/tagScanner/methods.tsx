@@ -1,7 +1,7 @@
 import { VStack } from '@chakra-ui/react'
 
-import { Method } from '~/packlets/scan/method'
-import { ScanMethod } from '~/packlets/scan/constants'
+import { Method } from '~/packlets/tagScanner/method'
+import { ScanMethod } from '~/packlets/tagScanner/constants'
 
 export const Methods = () => {
   return (
