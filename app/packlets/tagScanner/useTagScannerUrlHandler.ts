@@ -27,8 +27,8 @@ export const useTagScannerUrlHandler = (): Handler => {
     navigate({ search: searchParams.toString() })
   }
 
-  const setTag = (item: string) => {
-    searchParams.set('tag', item)
+  const setTag = (tag: string) => {
+    searchParams.set('tag', tag)
     navigate({ search: searchParams.toString() })
   }
 
