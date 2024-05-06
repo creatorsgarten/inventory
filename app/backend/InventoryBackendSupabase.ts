@@ -56,16 +56,23 @@ export class InventoryBackendSupabase implements InventoryBackend {
   async describeInventoryItems(
     options: DescribeInventoryItemsOptions
   ): Promise<Item[]> {
-    let query = this.supabase.from("inventory_items").select("*")
+    let query = this.supabase.from("inventory_items").select("*, inventory_label_attachments(inventory_labels(*))")
     if (options.id) query = query.eq("id", options.id)
     const { data: inventoryItems } = await query.throwOnError()
     return inventoryItems!.map((row): Item => {
+      let tagId: string | undefined
+      const relatedLabels = row.inventory_label_attachments.flatMap(r => r.inventory_labels ? [r.inventory_labels] : [])
+      if (relatedLabels.length > 0) {
+        // TODO: Update tagId to be an array instead of a string
+        tagId = relatedLabels.map(r => r?.id).join(', ')
+      }
       return {
         id: row.id,
         name: row.name,
         description: row.description,
         notes: row.notes,
         type: TagType.Item,
+        tagId,
         possession: {
           // TODO: Replace this with the actual possession info
           type: PossessionType.User,
