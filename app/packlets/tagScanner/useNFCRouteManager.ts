@@ -17,7 +17,7 @@ export const useNFCRouteManager = () => {
 
   useEffect(() => {
     // take action only if atom is active
-    if (nfcMonitor === null && location.pathname.match(scannerPathRegex) === null) {
+    if (nfcMonitor !== null && location.pathname.match(scannerPathRegex) === null) {
       // reset atom if location is not a matched pattern, but not reset if on scanner
       if (location.pathname.match(tagPathRegex) === null) {
         nfcMonitorAtom.set(null)
