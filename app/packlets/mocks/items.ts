@@ -12,7 +12,7 @@ export const mockItems: Item[] = [
     notes: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     imageUrl: 'https://placehold.co/600x400',
     type: TagType.Item,
-    tagId: 'CG00001',
+    tags: ['CG00001'],
     // this item is with user
     possession: {
       type: PossessionType.User,
@@ -28,7 +28,7 @@ export const mockItems: Item[] = [
     notes: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     imageUrl: 'https://placehold.co/600x400',
     type: TagType.Item,
-    tagId: 'CG00002',
+    tags: ['CG00002', 'CG00042'],
     // this item is with box
     possession: {
       type: PossessionType.Container,

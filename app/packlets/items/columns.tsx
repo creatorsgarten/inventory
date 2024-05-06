@@ -29,8 +29,8 @@ export const columns: ColumnDef<Item>[] = [
     id: 'Tag',
     accessorKey: 'tag',
     cell: ({ row }) => {
-      if (row.original.tagId)
-        return <Tag id={row.original.tagId} />
+      if (row.original.tags)
+        return <Tag tags={row.original.tags} />
       return null
     }
   },

@@ -12,7 +12,7 @@ export const mockContainers: Container[] = [
     imageUrl: 'https://placehold.co/600x400',
     type: TagType.Container,
     containerType: ContainerType.Box,
-    tagId: 'CG00004',
+    tags: ['CG00004'],
     // simulate box is in garden zero
     possession: {
       type: PossessionType.Container,
@@ -30,7 +30,7 @@ export const mockContainers: Container[] = [
     imageUrl: 'https://placehold.co/600x400',
     type: TagType.Container,
     containerType: ContainerType.Place,
-    tagId: 'CG00005',
+    tags: ['CG00005'],
     possession: null,
     items: 8,
     createdAt: dayjs().subtract(2, 'day').toISOString(),
@@ -44,7 +44,7 @@ export const mockContainers: Container[] = [
     imageUrl: 'https://placehold.co/600x400',
     type: TagType.Container,
     containerType: ContainerType.Box,
-    tagId: 'CG00006',
+    tags: ['CG00006'],
     // tech pouch is with user
     possession: {
       type: PossessionType.User,

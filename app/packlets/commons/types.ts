@@ -25,7 +25,7 @@ export interface Item {
   notes: string
   imageUrl?: string
   type: TagType.Item
-  tagId?: string
+  tags?: string[]
   possession: {
     type: PossessionType
     // if a possession type is user, then id is user id.
@@ -45,7 +45,7 @@ export interface Container {
   type: TagType.Container
   containerType: ContainerType
   items: number
-  tagId?: string
+  tags?: string[]
   // possession can be null if a container is a place
   possession: {
     type: PossessionType

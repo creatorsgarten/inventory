@@ -60,11 +60,11 @@ export class InventoryBackendSupabase implements InventoryBackend {
     if (options.id) query = query.eq("id", options.id)
     const { data: inventoryItems } = await query.throwOnError()
     return inventoryItems!.map((row): Item => {
-      let tagId: string | undefined
+      let tags: string[] | undefined
       const relatedLabels = row.inventory_label_attachments.flatMap(r => r.inventory_labels ? [r.inventory_labels] : [])
       if (relatedLabels.length > 0) {
         // TODO: Update tagId to be an array instead of a string
-        tagId = relatedLabels.map(r => r?.id).join(', ')
+        tags = relatedLabels.map(r => r?.id)
       }
       return {
         id: row.id,
@@ -72,7 +72,7 @@ export class InventoryBackendSupabase implements InventoryBackend {
         description: row.description,
         notes: row.notes,
         type: TagType.Item,
-        tagId,
+        tags,
         possession: {
           // TODO: Replace this with the actual possession info
           type: PossessionType.User,
