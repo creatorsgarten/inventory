@@ -4,6 +4,7 @@ import {
 import { ScanMethod } from '~/packlets/tagScanner/constants'
 import { Manual } from '~/packlets/tagScanner/manual'
 import { QR } from '~/packlets/tagScanner/qr'
+import { NFC } from '~/packlets/tagScanner/nfc'
 
 export const Input = () => {
   const { method } = useTagScannerUrlHandler()
@@ -12,6 +13,8 @@ export const Input = () => {
     return <Manual />
   else if (method === ScanMethod.QR)
     return <QR />
+  else if (method === ScanMethod.NFC)
+    return <NFC />
 
   return null
 }

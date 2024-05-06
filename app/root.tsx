@@ -14,8 +14,12 @@ import "@fontsource-variable/noto-sans-thai"
 
 import logo from "~/branding/creatorsgarten.svg"
 import { AppLayout } from "~/packlets/layout/app"
+// eslint-disable-next-line import/order
 import { chakraTheme } from "~/packlets/layout/chakraTheme"
+
 import "~/index.css"
+
+import { useNFCRouteManager } from '~/packlets/tagScanner/useNFCRouteManager'
 
 import { ComponentPreviews, useInitial } from "../dev"
 
@@ -59,6 +63,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  useNFCRouteManager()
+
   return (
     <ChakraProvider theme={chakraTheme}>
       <DevSupport

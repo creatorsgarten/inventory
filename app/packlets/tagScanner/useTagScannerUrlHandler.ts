@@ -5,11 +5,11 @@ import { ScanMethod } from '~/packlets/tagScanner/constants'
 
 interface Handler {
   method: ScanMethod | null
-  item: string | null
+  tag: string | null
   setMethod: (method: ScanMethod) => void
   resetMethod: () => void
-  setItem: (item: string) => void
-  resetItem: () => void
+  setTag: (tag: string) => void
+  resetTag: () => void
 }
 
 export const useTagScannerUrlHandler = (): Handler => {
@@ -27,22 +27,22 @@ export const useTagScannerUrlHandler = (): Handler => {
     navigate({ search: searchParams.toString() })
   }
 
-  const setItem = (item: string) => {
-    searchParams.set('item', item)
+  const setTag = (item: string) => {
+    searchParams.set('tag', item)
     navigate({ search: searchParams.toString() })
   }
 
-  const resetItem = () => {
-    searchParams.delete('item')
+  const resetTag = () => {
+    searchParams.delete('tag')
     navigate({ search: searchParams.toString() })
   }
 
   return {
     method: searchParams.get('method') as ScanMethod,
-    item: searchParams.get('item'),
+    tag: searchParams.get('tag'),
     setMethod,
     resetMethod,
-    setItem,
-    resetItem,
+    setTag,
+    resetTag,
   }
 }

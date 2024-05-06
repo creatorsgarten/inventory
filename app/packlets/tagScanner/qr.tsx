@@ -6,7 +6,7 @@ import { QRScanner } from '~/packlets/qrCodeScanner'
 import { useTagScannerUrlHandler } from '~/packlets/tagScanner/useTagScannerUrlHandler'
 
 export const QR = () => {
-  const { setItem } = useTagScannerUrlHandler()
+  const { setTag } = useTagScannerUrlHandler()
 
   const fallback = (
     <Box w="100%" border="1px" rounded="xl" py={16} borderStyle="dashed" borderColor="gray.500" textAlign="center">
@@ -16,7 +16,7 @@ export const QR = () => {
 
   return (
     <Suspense fallback={fallback}>
-      <QRScanner onScan={id => setItem(id)} />
+      <QRScanner onScan={id => setTag(id)} />
     </Suspense>
   )
 }

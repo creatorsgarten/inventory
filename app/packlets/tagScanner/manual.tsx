@@ -5,7 +5,7 @@ import { parseId } from '~/packlets/commons/parseId'
 import { useTagScannerUrlHandler } from '~/packlets/tagScanner/useTagScannerUrlHandler'
 
 export const Manual = () => {
-  const { setItem } = useTagScannerUrlHandler()
+  const { setTag } = useTagScannerUrlHandler()
 
   const [value, setValue] = useState('')
   const handleInput = (input: string) => {
@@ -17,7 +17,7 @@ export const Manual = () => {
 
   const handleSubmit = (id: string) => {
     if (parseId(id) !== null)
-      setItem(id)
+      setTag(id)
   }
 
   return (

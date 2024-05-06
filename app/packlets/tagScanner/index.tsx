@@ -12,12 +12,12 @@ interface Props {
 }
 
 export const TagScanner: FunctionComponent<Props> = ({ children }) => {
-  const { method, item } = useTagScannerUrlHandler()
+  const { method, tag } = useTagScannerUrlHandler()
 
   if (!method)
     return <Methods />
-  else if (!item)
+  else if (!tag)
     return <Input />
 
-  return children(item, method)
+  return children(tag, method)
 }
