@@ -1,4 +1,4 @@
-import { mockTags } from '~/packlets/mocks/tags'
 import { Tag } from '~/packlets/commons/types'
+import { backend } from '~/backend'
 
-export const getTags = async (): Promise<Tag[]> => mockTags
+export const getTags = async (): Promise<Tag[]> => backend.describeTags({})

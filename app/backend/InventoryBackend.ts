@@ -1,5 +1,7 @@
 import { ReadableAtom } from "nanostores"
 
+import { Item, Tag } from "~/packlets/commons/types"
+
 import { Database } from "./supabaseTypes"
 
 export interface InventoryBackend {
@@ -18,10 +20,21 @@ export interface InventoryBackend {
    */
   describeInventoryItems: (
     options: DescribeInventoryItemsOptions
-  ) => Promise<InventoryItem[]>;
+  ) => Promise<Item[]>;
+
+  /**
+   * Lists all tags
+   */
+  describeTags: (
+    options: DescribeTagsOptions
+  ) => Promise<Tag[]>;
 }
 
 export interface DescribeInventoryItemsOptions {
+  id?: string;
+}
+
+export interface DescribeTagsOptions {
   id?: string;
 }
 

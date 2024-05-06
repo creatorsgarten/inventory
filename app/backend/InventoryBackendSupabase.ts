@@ -1,11 +1,13 @@
 import { Session } from "@supabase/supabase-js"
 import { atom, onMount } from "nanostores"
 
+import { PossessionType, TagType } from "~/packlets/commons/constants"
+import { Item, Tag } from "~/packlets/commons/types"
+
 import {
   AuthState,
   DescribeInventoryItemsOptions,
   InventoryBackend,
-  InventoryItem,
 } from "./InventoryBackend"
 import { singletonSupabase } from "./supabase"
 
@@ -51,10 +53,51 @@ export class InventoryBackendSupabase implements InventoryBackend {
     await this.supabase.auth.signOut()
   }
 
-  async describeInventoryItems(options: DescribeInventoryItemsOptions) {
+  async describeInventoryItems(
+    options: DescribeInventoryItemsOptions
+  ): Promise<Item[]> {
     let query = this.supabase.from("inventory_items").select("*")
     if (options.id) query = query.eq("id", options.id)
     const { data: inventoryItems } = await query.throwOnError()
-    return inventoryItems as InventoryItem[]
+    return inventoryItems!.map((row): Item => {
+      return {
+        id: row.id,
+        name: row.name,
+        description: row.description,
+        notes: row.notes,
+        type: TagType.Item,
+        possession: {
+          // TODO: Replace this with the actual possession info
+          type: PossessionType.User,
+          id: "unknown",
+        },
+        createdAt: row.created_at,
+        // TODO: Add updatedAt to the database
+        updatedAt: "",
+      }
+    })
+  }
+
+  async describeTags(): Promise<Tag[]> {
+    const query = this.supabase.from("inventory_labels").select("*, inventory_label_attachments(inventory_items(*))")
+    const { data: labels } = await query.throwOnError()
+    return labels!.map((row): Tag => {
+      let link: Tag['link'] = null
+      const relatedItem = row.inventory_label_attachments?.inventory_items
+      if (relatedItem) {
+        link = {
+          type: TagType.Item,
+          id: relatedItem.id,
+        }
+      }
+      return {
+        id: row.id,
+        createdAt: row.created_at,
+        // TODO: Replace this with the actual link info
+        link: link,
+        // TODO: Add updatedAt to the database
+        updatedAt: "",
+      }
+    })
   }
 }
