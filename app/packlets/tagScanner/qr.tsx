@@ -1,6 +1,3 @@
-import { Box, Text } from '@chakra-ui/react'
-import { Suspense } from 'react'
-
 import { QRCodeScanner } from '~/packlets/qrCodeScanner'
 
 import { useTagScannerUrlHandler } from '~/packlets/tagScanner/useTagScannerUrlHandler'
@@ -8,15 +5,5 @@ import { useTagScannerUrlHandler } from '~/packlets/tagScanner/useTagScannerUrlH
 export const QR = () => {
   const { setTag } = useTagScannerUrlHandler()
 
-  const fallback = (
-    <Box w="100%" border="1px" rounded="xl" py={16} borderStyle="dashed" borderColor="gray.500" textAlign="center">
-      <Text fontSize="md" fontWeight="bold">Initializing QR code scanner</Text>
-    </Box>
-  )
-
-  return (
-    <Suspense fallback={fallback}>
-      <QRCodeScanner onScan={id => setTag(id)} />
-    </Suspense>
-  )
+  return <QRCodeScanner onScan={id => setTag(id)} />
 }
