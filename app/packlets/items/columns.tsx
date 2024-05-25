@@ -7,6 +7,7 @@ import { Icon } from '~/packlets/commons/icon'
 import { Link } from '~/packlets/commons/link'
 import { Tag } from '~/packlets/table/tag'
 import { Possession } from '~/packlets/table/possession'
+import { RemoveItemModal } from '~/packlets/items/removeItemModal'
 
 export const columns: ColumnDef<Item>[] = [
   {
@@ -45,7 +46,7 @@ export const columns: ColumnDef<Item>[] = [
       <HStack justify="end">
         <IconButton aria-label="See" size="sm" icon={<Icon icon="lucide:scan-line" />}></IconButton>
         <IconButton as={Link} to={"/items/" + row.original.id} aria-label="See" size="sm" icon={<Icon icon="lucide:eye" />}></IconButton>
-        <IconButton aria-label="See" size="sm" colorScheme="red" icon={<Icon icon="lucide:trash" />}></IconButton>
+        <RemoveItemModal id={row.original.id} name={row.original.name}  />
       </HStack>
     )
   }
