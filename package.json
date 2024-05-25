@@ -28,14 +28,15 @@
     "@supabase/auth-ui-shared": "^0.1.8",
     "@supabase/supabase-js": "^2.42.1",
     "@tanstack/react-table": "^8.16.0",
-    "@yudiel/react-qr-scanner": "^2.0.0-beta.3",
     "dayjs": "^1.11.11",
     "framer-motion": "^6",
     "isbot": "^4.1.0",
     "nanostores": "^0.10.3",
     "nprogress": "^0.2.0",
+    "qr-scanner": "^1.4.2",
     "react": "^19.0.0-canary-4c12339ce-20240408",
     "react-dom": "^19.0.0-canary-4c12339ce-20240408",
+    "react-hook-form": "^7.51.4",
     "web-api-hooks": "^3.0.2"
   },
   "devDependencies": {
@@ -56,6 +57,7 @@
     "supabase": "^1.153.4",
     "typescript": "^5.1.6",
     "vite": "^5.1.0",
+    "vite-plugin-mkcert": "^1.17.5",
     "vite-tsconfig-paths": "^4.2.1"
   },
   "engines": {

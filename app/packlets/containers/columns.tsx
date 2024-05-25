@@ -6,7 +6,6 @@ import { Container } from '~/packlets/commons/types'
 import { Icon } from '~/packlets/commons/icon'
 import { Link } from '~/packlets/commons/link'
 import { Tag } from '~/packlets/table/tag'
-import { Possession } from '~/packlets/table/possession'
 
 export const columns: ColumnDef<Container>[] = [
   {
@@ -41,11 +40,6 @@ export const columns: ColumnDef<Container>[] = [
     ),
     accessorKey: 'items',
   },
-  // {
-  //   id: 'Location',
-  //   header: 'Location',
-  //   cell: ({ row }) => <Possession {...row.original.possession} />
-  // },
   {
     id: 'options',
     cell: ({ row }) => (

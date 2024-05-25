@@ -1,22 +1,43 @@
-import { Box, Text } from '@chakra-ui/react'
-import { FunctionComponent, Suspense, useEffect } from 'react'
+import { VStack, chakra, Box, Text } from '@chakra-ui/react'
+import {
+  FunctionComponent, Suspense,
+  useRef,
+} from 'react'
 
-import { readerStateAtom } from './readerStateAtom'
-import { Scanner } from './scanner'
+import { useQRScanner } from './useQRScanner'
 
 interface Props {
-  onScan?: (id: string) => void
+  onScan?: (url: string) => void
 }
 
-export const QRScanner: FunctionComponent<Props> = ({ onScan }) => {
-  useEffect(() => {
-    readerStateAtom.set('start')
+const LoadedScanner: FunctionComponent<Props> = ({ onScan }) => {
+  const videoRef = useRef<HTMLVideoElement>(null)
 
-    return () => {
-      readerStateAtom.set('stop')
-    }
-  }, [])
+  const { initErrorMessage } = useQRScanner(videoRef, {
+    onResult: result => onScan?.(result.data),
+    onError: err => console.error(err),
+  })
 
+  if (initErrorMessage)
+    return (
+      <Box w="100%" border="1px" rounded="xl" py={16} borderStyle="dashed" borderColor="gray.500" textAlign="center">
+        <Text fontSize="md" fontWeight="bold">{initErrorMessage}</Text>
+      </Box>
+    )
+
+  return (
+    <VStack align="start">
+      <chakra.video
+        ref={videoRef}
+        w="100%"
+        aspectRatio={1}
+        objectFit="cover"
+      />
+    </VStack>
+  )
+}
+
+export const QRCodeScanner: FunctionComponent<Props> = props => {
   const fallback = (
     <Box w="100%" border="1px" rounded="xl" py={16} borderStyle="dashed" borderColor="gray.500" textAlign="center">
       <Text fontSize="md" fontWeight="bold">Initializing QR code scanner</Text>
@@ -25,7 +46,7 @@ export const QRScanner: FunctionComponent<Props> = ({ onScan }) => {
 
   return (
     <Suspense fallback={fallback}>
-      <Scanner onScan={onScan} />
+      <LoadedScanner {...props} />
     </Suspense>
   )
 }
