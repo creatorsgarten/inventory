@@ -18,6 +18,7 @@
     "@emotion/styled": "^11",
     "@nanostores/persistent": "^0.10.1",
     "@nanostores/react": "^0.7.2",
+    "@rayriffy/qr-scanner": "^1.0.1",
     "@rayriffy/table": "^1.0.0",
     "@react-buddy/ide-toolbox": "^2.4.0",
     "@react-buddy/palette-chakra-ui": "^2.3.1",
@@ -33,7 +34,6 @@
     "isbot": "^4.1.0",
     "nanostores": "^0.10.3",
     "nprogress": "^0.2.0",
-    "qr-scanner": "^1.4.2",
     "react": "^19.0.0-canary-4c12339ce-20240408",
     "react-dom": "^19.0.0-canary-4c12339ce-20240408",
     "react-hook-form": "^7.51.4",
@@ -61,5 +61,6 @@
   },
   "engines": {
     "node": ">=18.0.0"
-  }
+  },
+  "packageManager": "pnpm@9.4.0+sha512.f549b8a52c9d2b8536762f99c0722205efc5af913e77835dbccc3b0b0b2ca9e7dc8022b78062c17291c48e88749c70ce88eb5a74f1fa8c4bf5e18bb46c8bd83a"
 }
