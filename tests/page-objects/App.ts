@@ -1,5 +1,6 @@
-import { expect, Page } from "@playwright/test";
-import { PageObject, PageObjectContext } from "./PageObject";
+import { expect } from "@playwright/test";
+import { PageObject } from "./PageObject";
+import { randomUUID } from "crypto";
 
 export class App extends PageObject {
   get loginPage() {
@@ -17,14 +18,14 @@ export class App extends PageObject {
   generateTagId() {
     return (
       "TS" +
-      (parseInt(crypto.randomUUID().slice(0, 8), 16) % 100000)
+      (parseInt(randomUUID().slice(0, 8), 16) % 100000)
         .toString()
         .padStart(5, "0")
     );
   }
 
   generateItemName() {
-    return "Test item " + crypto.randomUUID().slice(0, 8);
+    return "Test item " + randomUUID().slice(0, 8);
   }
 }
 
