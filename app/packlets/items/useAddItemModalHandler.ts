@@ -1,34 +1,13 @@
-import { useState } from 'react'
-import { useNavigate } from '@remix-run/react'
+import { useMutation } from '@tanstack/react-query'
+import { CreateItemPayload, createItem } from '~/packlets/data/createItem'
 
-import { createItem } from '~/packlets/data/createItem'
+interface Options {
+  onSuccess?: () => void
+}
 
-export const useAddItemModalHandler = () => {
-  const [loading, setLoading] = useState<boolean>(false)
-  const [error, setError] = useState<boolean>(false)
-
-  const navigate = useNavigate()
-
-  const handleAddItem = async () => {
-    setLoading(true)
-    setError(true)
-
-    try {
-      const createdItemId = await createItem({
-        name: 'name',
-        description: 'description',
-      })
-      navigate(`/items/${createdItemId}`)
-    } catch (error) {
-      setError(true)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  return {
-    loading,
-    error,
-    handle: handleAddItem,
-  }
+export const useAddItemHandler = ({ onSuccess }: Options) => {
+  return useMutation<string, unknown, CreateItemPayload>({
+    mutationFn: createItem,
+    onSuccess,
+  })
 }
