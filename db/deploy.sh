@@ -1,6 +1,6 @@
 #!/bin/bash -e
 DEFAULT_DB_URL=postgresql://postgres:postgres@127.0.0.1:54322/postgres
-DB_URL="${DB_URL:-$DEFAULT_DB_URL}"
+export DB_URL="${DB_URL:-$DEFAULT_DB_URL}"
 
 bun drizzle-kit migrate
 
