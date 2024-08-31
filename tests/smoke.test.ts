@@ -1,31 +1,25 @@
-import { test, expect } from "@playwright/test";
+import { test } from "@playwright/test";
+import { App } from "./page-objects/App";
 
 test("add item", async ({ page }) => {
-  await page.goto("/auth/login");
-  await page.getByRole("link", { name: "Sign up" }).click();
-  await expect(page.getByRole("link", { name: "Sign up" })).not.toBeVisible();
-  await page
-    .getByLabel("Email address")
-    .fill(`tester-${Date.now()}@inventory.garten`);
-  await page.getByLabel("Password").fill("password");
-  await page.getByRole("button", { name: "Sign Up" }).click();
+  const app = new App({ page });
+  await app.loginPage.goto();
+  await app.loginPage.signUp();
 
-  await page.getByRole("button", { name: "Add Item" }).click();
-  const tagId =
-    "TS" +
-    (parseInt(crypto.randomUUID().slice(0, 8), 16) % 100000)
-      .toString()
-      .padStart(5, "0");
-  const itemName = "Test item " + crypto.randomUUID().slice(0, 8);
-  await page.getByLabel("Item name").fill(itemName);
-  await page.getByLabel("Description").fill("This item is created by a test");
-  await page.getByRole("button", { name: "Scan tag" }).click();
-  await page.getByText("Input manually").click();
-  for (let [i, char] of tagId.split("").entries()) {
-    await page.getByRole("textbox").nth(i).pressSequentially(char);
-  }
-  await page.getByRole("button", { name: "Submit" }).click();
+  const email = `tester-${Date.now()}@inventory.garten`;
+  const password = "password";
+  await app.loginPage.fillSignUpForm(email, password);
+  await app.loginPage.submitSignUpForm();
 
-  await expect(page.getByText("Item created")).toBeVisible();
-  await expect(page.getByText("Item created")).toBeVisible();
+  await app.itemListPage.clickAddItem();
+  const tagId = app.generateTagId();
+  const itemName = app.generateItemName();
+  await app.itemListPage.newItemDialog.fillItemDetails(
+    itemName,
+    "This item is created by a test"
+  );
+  await app.itemListPage.newItemDialog.scanTag(tagId);
+  await app.itemListPage.newItemDialog.submitItemForm();
+
+  await app.expectSuccessMessage("Item created");
 });
