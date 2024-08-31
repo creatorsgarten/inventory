@@ -4,6 +4,11 @@ export enum ScanMethod {
   Manual = 'manual',
 }
 
+export enum TagScannerQueryString {
+  Method = 'tagScanner:method',
+  Tag = 'tagScanner:tag',
+}
+
 export enum MockTag {
   Tag1 = 'CG00001',
   Tag2 = 'CG00002',

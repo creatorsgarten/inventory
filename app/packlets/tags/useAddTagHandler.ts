@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query'
 import { createTag } from '~/packlets/data/createTag'
 
 interface Options {
-  onSuccess: () => void
+  onSuccess?: () => void
 }
 
 export const useAddTagHandler = ({ onSuccess }: Options) => {

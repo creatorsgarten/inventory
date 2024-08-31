@@ -8,6 +8,7 @@ import { useLocation, useNavigate } from '@remix-run/react'
 import { FunctionComponent, ReactNode, Suspense, useMemo } from 'react'
 
 import { useGetCurrentUrlWithQueryString } from '~/packlets/commons/useGetCurrentUrlWithQueryString'
+import { TagScannerQueryString } from '~/packlets/tagScanner/constants'
 
 interface Props extends Omit<ModalProps, 'children' | 'isOpen' | 'onClose'> {
   query: string
@@ -22,8 +23,8 @@ const Modal: FunctionComponent<Props> = ({ query, children, ...rest }) => {
 
   const closeUrl = useGetCurrentUrlWithQueryString({
     [query]: undefined,
-    method: undefined,
-    tag: undefined,
+    [TagScannerQueryString.Method]: undefined,
+    [TagScannerQueryString.Tag]: undefined,
   })
 
   const isOpen = useMemo(

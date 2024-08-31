@@ -1,7 +1,10 @@
 import { useLocation, useNavigate } from '@remix-run/react'
 import { useMemo } from 'react'
 
-import { ScanMethod } from '~/packlets/tagScanner/constants'
+import {
+  ScanMethod,
+  TagScannerQueryString,
+} from '~/packlets/tagScanner/constants'
 
 interface Handler {
   method: ScanMethod | null
@@ -21,28 +24,28 @@ export const useTagScannerUrlHandler = (): Handler => {
   )
 
   const setMethod = (method: ScanMethod) => {
-    searchParams.set('method', method)
+    searchParams.set(TagScannerQueryString.Method, method)
     navigate({ search: searchParams.toString() })
   }
 
   const resetMethod = () => {
-    searchParams.delete('method')
+    searchParams.delete(TagScannerQueryString.Method)
     navigate({ search: searchParams.toString() })
   }
 
   const setTag = (tag: string) => {
-    searchParams.set('tag', tag)
+    searchParams.set(TagScannerQueryString.Tag, tag)
     navigate({ search: searchParams.toString() })
   }
 
   const resetTag = () => {
-    searchParams.delete('tag')
+    searchParams.delete(TagScannerQueryString.Tag)
     navigate({ search: searchParams.toString() })
   }
 
   return {
-    method: searchParams.get('method') as ScanMethod,
-    tag: searchParams.get('tag'),
+    method: searchParams.get(TagScannerQueryString.Method) as ScanMethod,
+    tag: searchParams.get(TagScannerQueryString.Tag),
     setMethod,
     resetMethod,
     setTag,
