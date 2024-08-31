@@ -10,8 +10,12 @@ do
   psql --dbname "$DB_URL" < "$file"
 done
 
-if [ "$DB_URL" = "$DEFAULT_DB_URL" ]; then
-  bun generate-types
+if [ -z "$CI" ]; then
+  if [ "$DB_URL" = "$DEFAULT_DB_URL" ]; then
+    bun generate-types
+  else
+    echo "Skipping generating types as not running against local"
+  fi
 else
-  echo "Skipping generating types as not running against local"
+  echo "Skipping generating types as running on CI"
 fi
