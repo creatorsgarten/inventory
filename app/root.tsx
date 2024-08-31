@@ -1,4 +1,3 @@
-import React from 'react'
 import { ChakraProvider } from '@chakra-ui/react'
 import { LinksFunction, MetaFunction } from '@remix-run/node'
 import {
@@ -8,6 +7,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from '@remix-run/react'
+import React from 'react'
 import 'nprogress/nprogress.css'
 import { DevSupport } from '@react-buddy/ide-toolbox'
 import '@fontsource-variable/noto-sans-thai'
@@ -21,6 +21,8 @@ import '~/index.css'
 
 import { useNFCRouteManager } from '~/packlets/tagScanner/useNFCRouteManager'
 
+import { QueryClient } from '@tanstack/query-core'
+import { QueryClientProvider } from '@tanstack/react-query'
 import { ComponentPreviews, useInitial } from '../dev'
 
 export const meta: MetaFunction = () => {
@@ -62,20 +64,24 @@ export function Layout({ children }: { children: React.ReactNode }) {
   )
 }
 
+const queryClient = new QueryClient()
+
 export default function App() {
   useNFCRouteManager()
 
   return (
-    <ChakraProvider theme={chakraTheme}>
-      <DevSupport
-        ComponentPreviews={ComponentPreviews}
-        useInitialHook={useInitial}
-      >
-        <AppLayout>
-          <Outlet />
-        </AppLayout>
-      </DevSupport>
-    </ChakraProvider>
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider theme={chakraTheme}>
+        <DevSupport
+          ComponentPreviews={ComponentPreviews}
+          useInitialHook={useInitial}
+        >
+          <AppLayout>
+            <Outlet />
+          </AppLayout>
+        </DevSupport>
+      </ChakraProvider>
+    </QueryClientProvider>
   )
 }
 

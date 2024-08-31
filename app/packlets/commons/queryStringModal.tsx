@@ -1,11 +1,11 @@
-import { FunctionComponent, ReactNode, Suspense, useMemo } from 'react'
-import { useLocation, useNavigate } from '@remix-run/react'
 import {
   Modal as ChakraModal,
   ModalContent,
   ModalOverlay,
   ModalProps,
 } from '@chakra-ui/modal'
+import { useLocation, useNavigate } from '@remix-run/react'
+import { FunctionComponent, ReactNode, Suspense, useMemo } from 'react'
 
 import { useGetCurrentUrlWithQueryString } from '~/packlets/commons/useGetCurrentUrlWithQueryString'
 
@@ -22,6 +22,8 @@ const Modal: FunctionComponent<Props> = ({ query, children, ...rest }) => {
 
   const closeUrl = useGetCurrentUrlWithQueryString({
     [query]: undefined,
+    method: undefined,
+    tag: undefined,
   })
 
   const isOpen = useMemo(
