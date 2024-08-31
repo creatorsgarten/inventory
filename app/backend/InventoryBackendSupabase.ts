@@ -58,14 +58,14 @@ export class InventoryBackendSupabase implements InventoryBackend {
     options: DescribeInventoryItemsOptions
   ): Promise<Item[]> {
     let query = this.supabase
-      .from("inventory_items")
-      .select("*, inventory_label_attachments(inventory_labels(*))");
+      .from("items")
+      .select("*, label_attachments(labels(*))");
     if (options.id) query = query.eq("id", options.id);
     const { data: inventoryItems } = await query.throwOnError();
     return inventoryItems!.map((row): Item => {
       let tags: string[] | undefined;
-      const relatedLabels = row.inventory_label_attachments.flatMap((r) =>
-        r.inventory_labels ? [r.inventory_labels] : []
+      const relatedLabels = row.label_attachments.flatMap((r) =>
+        r.labels ? [r.labels] : []
       );
       if (relatedLabels.length > 0) {
         // TODO: Update tagId to be an array instead of a string
@@ -92,12 +92,12 @@ export class InventoryBackendSupabase implements InventoryBackend {
 
   async describeTags(): Promise<Tag[]> {
     const query = this.supabase
-      .from("inventory_labels")
-      .select("*, inventory_label_attachments(inventory_items(*))");
+      .from("labels")
+      .select("*, label_attachments(items(*))");
     const { data: labels } = await query.throwOnError();
     return labels!.map((row): Tag => {
       let link: Tag["link"] = null;
-      const relatedItem = row.inventory_label_attachments?.inventory_items;
+      const relatedItem = row.label_attachments?.[0]?.items;
       if (relatedItem) {
         link = {
           type: TagType.Item,

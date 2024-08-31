@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION inventory_create_item_with_label(
+CREATE OR REPLACE FUNCTION inventorygarten.create_item_with_label(
   p_name TEXT,
   p_description TEXT,
   p_tag TEXT
@@ -12,22 +12,22 @@ BEGIN
   v_user_id := auth.uid();
 
   -- Create new item
-  INSERT INTO inventory_items (name, description)
+  INSERT INTO inventorygarten.items (name, description)
   VALUES (p_name, p_description)
   RETURNING id INTO v_item_id;
 
   -- Create new label if it doesn't exist
-  INSERT INTO inventory_labels (id)
+  INSERT INTO inventorygarten.labels (id)
   VALUES (p_tag)
   ON CONFLICT (id) DO NOTHING
   RETURNING id INTO v_label_id;
 
   -- Attach item and label
-  INSERT INTO inventory_label_attachments (item_id, label_id)
+  INSERT INTO inventorygarten.label_attachments (item_id, label_id)
   VALUES (v_item_id, v_label_id);
 
   -- Log activity
-  INSERT INTO activity_log (user_id, activity_type, activity_payload)
+  INSERT INTO inventorygarten.activity_log (user_id, activity_type, activity_payload)
   VALUES (
     v_user_id,
     'create_item',

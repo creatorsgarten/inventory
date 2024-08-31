@@ -35,13 +35,13 @@
  *
  * Tags: uuid guid uuid-generator guid-generator generator time order rfc4122 rfc-4122
  */
-create or replace function uuid7() returns uuid as $$
+create or replace function inventorygarten.uuid7() returns uuid as $$
 declare
 begin
 	return uuid7(clock_timestamp());
 end $$ language plpgsql;
 
-create or replace function uuid7(p_timestamp timestamp with time zone) returns uuid as $$
+create or replace function inventorygarten.uuid7(p_timestamp timestamp with time zone) returns uuid as $$
 declare
 
 	v_time numeric := null;

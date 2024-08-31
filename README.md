@@ -22,6 +22,9 @@ bun supabase start
 # Get the URLs for the local Supabase instance
 bun supabase status
 
+# Migrate the schema
+bun drizzle-kit migrate
+
 # Start dev server
 bun dev
 ```

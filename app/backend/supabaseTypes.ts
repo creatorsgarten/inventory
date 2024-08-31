@@ -32,57 +32,57 @@ export type Database = {
       [_ in never]: never
     }
   }
-  public: {
+  inventorygarten: {
     Tables: {
       activity_log: {
         Row: {
           activity_payload: Json | null
           activity_type: string
-          created_at: string | null
+          created_at: string
           id: string
           user_id: string
         }
         Insert: {
           activity_payload?: Json | null
           activity_type: string
-          created_at?: string | null
+          created_at?: string
           id?: string
           user_id: string
         }
         Update: {
           activity_payload?: Json | null
           activity_type?: string
-          created_at?: string | null
+          created_at?: string
           id?: string
           user_id?: string
         }
         Relationships: []
       }
-      inventory_items: {
+      items: {
         Row: {
           created_at: string
-          description: string
+          description: string | null
           id: string
           name: string
-          notes: string
+          notes: string | null
         }
         Insert: {
           created_at?: string
-          description?: string
+          description?: string | null
           id?: string
           name: string
-          notes?: string
+          notes?: string | null
         }
         Update: {
           created_at?: string
-          description?: string
+          description?: string | null
           id?: string
           name?: string
-          notes?: string
+          notes?: string | null
         }
         Relationships: []
       }
-      inventory_label_attachments: {
+      label_attachments: {
         Row: {
           created_at: string
           id: string
@@ -103,22 +103,22 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "public_inventory_label_attachments_item_id_fkey"
+            foreignKeyName: "label_attachments_item_id_items_id_fk"
             columns: ["item_id"]
             isOneToOne: false
-            referencedRelation: "inventory_items"
+            referencedRelation: "items"
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "public_inventory_label_attachments_label_id_fkey"
+            foreignKeyName: "label_attachments_label_id_labels_id_fk"
             columns: ["label_id"]
-            isOneToOne: true
-            referencedRelation: "inventory_labels"
+            isOneToOne: false
+            referencedRelation: "labels"
             referencedColumns: ["id"]
           },
         ]
       }
-      inventory_labels: {
+      labels: {
         Row: {
           created_at: string
           id: string
@@ -133,31 +133,7 @@ export type Database = {
         }
         Relationships: []
       }
-      inventory_logs: {
-        Row: {
-          activity_payload: Json | null
-          activity_type: string | null
-          created_at: string
-          id: string
-          user_id: string | null
-        }
-        Insert: {
-          activity_payload?: Json | null
-          activity_type?: string | null
-          created_at?: string
-          id?: string
-          user_id?: string | null
-        }
-        Update: {
-          activity_payload?: Json | null
-          activity_type?: string | null
-          created_at?: string
-          id?: string
-          user_id?: string | null
-        }
-        Relationships: []
-      }
-      inventory_nfc_tags: {
+      nfc_tags: {
         Row: {
           created_at: string
           id: string
@@ -196,6 +172,23 @@ export type Database = {
             }
             Returns: string
           }
+    }
+    Enums: {
+      [_ in never]: never
+    }
+    CompositeTypes: {
+      [_ in never]: never
+    }
+  }
+  public: {
+    Tables: {
+      [_ in never]: never
+    }
+    Views: {
+      [_ in never]: never
+    }
+    Functions: {
+      [_ in never]: never
     }
     Enums: {
       [_ in never]: never
