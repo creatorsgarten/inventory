@@ -11,20 +11,20 @@ export const Manual = () => {
   const handleInput = (input: string) => {
     setValue(input.toUpperCase())
 
-    if (input.length === 7)
-      handleSubmit(input.toUpperCase())
+    if (input.length === 7) handleSubmit(input.toUpperCase())
   }
 
   const handleSubmit = (id: string) => {
-    if (parseId(id) !== null)
-      setTag(id)
+    if (parseId(id) !== null) setTag(id)
   }
 
   return (
     <VStack>
-      <Text textColor="gray.700" fontSize="sm">Please type tag ID below</Text>
+      <Text textColor="gray.700" fontSize="sm">
+        Please type tag ID below
+      </Text>
       <HStack justify="center" fontFamily="monospace">
-        <PinInput type='alphanumeric' value={value} onChange={handleInput}>
+        <PinInput type="alphanumeric" value={value} onChange={handleInput}>
           <PinInputField />
           <PinInputField />
           <PinInputField />

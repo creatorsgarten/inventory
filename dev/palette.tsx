@@ -1,11 +1,6 @@
-import { Fragment } from "react"
-import {
-  Category,
-  Component,
-  Variant,
-  Palette,
-} from "@react-buddy/ide-toolbox"
-import ChakraPalette from "@react-buddy/palette-chakra-ui"
+import { Fragment } from 'react'
+import { Category, Component, Variant, Palette } from '@react-buddy/ide-toolbox'
+import ChakraPalette from '@react-buddy/palette-chakra-ui'
 
 export const PaletteTree = () => (
   <Palette>

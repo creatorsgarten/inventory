@@ -11,9 +11,13 @@ interface NFCMonitor {
   searchKey: string
 }
 
-export const nfcMonitorAtom = persistentAtom<NFCMonitor | null>('nfcMonitor', null, {
-  encode: JSON.stringify,
-  decode: JSON.parse,
-})
+export const nfcMonitorAtom = persistentAtom<NFCMonitor | null>(
+  'nfcMonitor',
+  null,
+  {
+    encode: JSON.stringify,
+    decode: JSON.parse,
+  }
+)
 
 export const useNFCMonitorAtom = () => useStore(nfcMonitorAtom)

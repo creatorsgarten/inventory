@@ -14,7 +14,10 @@ export const useAddItemModalHandler = () => {
     setError(true)
 
     try {
-      const createdItemId = await createItem({ name: 'name', description: 'description' })
+      const createdItemId = await createItem({
+        name: 'name',
+        description: 'description',
+      })
       navigate(`/items/${createdItemId}`)
     } catch (error) {
       setError(true)
@@ -26,6 +29,6 @@ export const useAddItemModalHandler = () => {
   return {
     loading,
     error,
-    handle: handleAddItem
+    handle: handleAddItem,
   }
 }

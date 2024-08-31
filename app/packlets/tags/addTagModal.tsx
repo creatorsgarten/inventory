@@ -1,11 +1,11 @@
 import { ModalHeader } from '@chakra-ui/modal'
 
 import { QueryStringModal } from '~/packlets/commons/queryStringModal'
-import { ItemsQueryStringKeys } from '~/packlets/items/constants'
+import { TagsQueryStringKeys } from '~/packlets/tags/constants'
 
-export const AddItemModal = () => {
+export const AddTagModal = () => {
   return (
-    <QueryStringModal query={ItemsQueryStringKeys.AddModal}>
+    <QueryStringModal query={TagsQueryStringKeys.AddModal}>
       {() => <ModalHeader>Add Item</ModalHeader>}
     </QueryStringModal>
   )

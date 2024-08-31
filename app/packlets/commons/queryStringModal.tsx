@@ -3,12 +3,11 @@ import { useLocation, useNavigate } from '@remix-run/react'
 import {
   Modal as ChakraModal,
   ModalContent,
-  ModalOverlay, ModalProps,
+  ModalOverlay,
+  ModalProps,
 } from '@chakra-ui/modal'
 
-import {
-  useGetCurrentUrlWithQueryString
-} from '~/packlets/commons/useGetCurrentUrlWithQueryString'
+import { useGetCurrentUrlWithQueryString } from '~/packlets/commons/useGetCurrentUrlWithQueryString'
 
 interface Props extends Omit<ModalProps, 'children' | 'isOpen' | 'onClose'> {
   query: string
@@ -22,12 +21,13 @@ const Modal: FunctionComponent<Props> = ({ query, children, ...rest }) => {
   const navigate = useNavigate()
 
   const closeUrl = useGetCurrentUrlWithQueryString({
-    [query]: undefined
+    [query]: undefined,
   })
 
-  const isOpen = useMemo(() =>
-    new URLSearchParams(search).get(query) === 'true'
-  , [search, query])
+  const isOpen = useMemo(
+    () => new URLSearchParams(search).get(query) === 'true',
+    [search, query]
+  )
 
   const handleClose = () => navigate(closeUrl)
 
@@ -36,7 +36,7 @@ const Modal: FunctionComponent<Props> = ({ query, children, ...rest }) => {
       <ModalOverlay />
       <ModalContent>
         {children({
-          onClose: handleClose
+          onClose: handleClose,
         })}
       </ModalContent>
     </ChakraModal>

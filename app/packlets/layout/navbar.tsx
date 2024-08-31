@@ -9,13 +9,13 @@ import {
   Wrap,
   WrapItem,
   Text,
-} from "@chakra-ui/react"
+} from '@chakra-ui/react'
 
-import { Link } from "~/packlets/commons/link"
-import { MainContainer } from "~/packlets/layout/mainContainer"
-import { Auth } from "~/packlets/layout/auth"
-import { Icon } from "~/packlets/commons/icon"
-import { menus } from "~/packlets/layout/menus"
+import { Link } from '~/packlets/commons/link'
+import { MainContainer } from '~/packlets/layout/mainContainer'
+import { Auth } from '~/packlets/layout/auth'
+import { Icon } from '~/packlets/commons/icon'
+import { menus } from '~/packlets/layout/menus'
 
 export const Navbar = () => {
   return (
@@ -30,7 +30,13 @@ export const Navbar = () => {
 
           <Spacer />
           <HStack>
-            <IconButton as={Link} variant="black" to="/scan" aria-label='Scan Items' icon={<Icon icon="lucide:scan-line" />} />
+            <IconButton
+              as={Link}
+              variant="black"
+              to="/scan"
+              aria-label="Scan Items"
+              icon={<Icon icon="lucide:scan-line" />}
+            />
             <Auth />
           </HStack>
         </HStack>
@@ -38,7 +44,7 @@ export const Navbar = () => {
       <Divider orientation="horizontal" />
       <MainContainer>
         <Wrap spacing={4} py={1}>
-          {menus.map((menu) => (
+          {menus.map(menu => (
             <WrapItem key={`dash-layout-${menu.name}`}>
               <Button
                 as={Link}

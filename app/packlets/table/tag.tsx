@@ -8,11 +8,12 @@ interface Props {
   tags: string[]
 }
 
-export const Tag: FunctionComponent<Props> = ({ tags }) => tags.map(tag => (
-  <Link key={`table-tag-${tag}`} to={'/tags/' + tag} color="black">
-    <HStack>
-      <Icon icon="lucide:cpu" />
-      <Text fontWeight="medium">{tag}</Text>
-    </HStack>
-  </Link>
-))
+export const Tag: FunctionComponent<Props> = ({ tags }) =>
+  tags.map(tag => (
+    <Link key={`table-tag-${tag}`} to={'/tags/' + tag} color="black">
+      <HStack>
+        <Icon icon="lucide:cpu" />
+        <Text fontWeight="medium">{tag}</Text>
+      </HStack>
+    </Link>
+  ))

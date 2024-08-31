@@ -3,7 +3,6 @@ import dayjs from 'dayjs'
 import { Item } from '~/packlets/commons/types'
 import { TagType, PossessionType } from '~/packlets/commons/constants'
 
-
 export const mockItems: Item[] = [
   {
     id: 'item01',

@@ -75,7 +75,6 @@ export interface Log {
     name?: string
     // TagType only be used when action is Action.PutIn and Action.PutOut
     type?: PossessionType | TagType
-
   }
   createdAt: ISOTimestamp
 }

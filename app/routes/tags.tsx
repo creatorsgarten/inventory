@@ -1,7 +1,7 @@
-import { defer } from "@remix-run/react"
-import { Button, Heading, HStack, Spacer, VStack } from "@chakra-ui/react"
+import { defer } from '@remix-run/react'
+import { Button, Heading, HStack, Spacer, VStack } from '@chakra-ui/react'
 
-import { MainContainer } from "~/packlets/layout/mainContainer"
+import { MainContainer } from '~/packlets/layout/mainContainer'
 import { Icon } from '~/packlets/commons/icon'
 import { getTags } from '~/packlets/data/getTags'
 import { TagsTable } from '~/packlets/tags/table'

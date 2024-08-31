@@ -1,18 +1,18 @@
-import { Heading, Text } from "@chakra-ui/react"
+import { Heading, Text } from '@chakra-ui/react'
 import {
   ClientLoaderFunctionArgs,
   MetaFunction,
   json,
   useLoaderData,
-} from "@remix-run/react"
+} from '@remix-run/react'
 
 import { Timeline } from '~/packlets/timeline'
 
-import { MainContainer } from "~/packlets/layout/mainContainer"
+import { MainContainer } from '~/packlets/layout/mainContainer'
 import { getTagById } from '~/packlets/data/getTagById'
 import { getTagLogs } from '~/packlets/data/getTagLogs'
 
-import type { SerializeFrom } from "@remix-run/server-runtime"
+import type { SerializeFrom } from '@remix-run/server-runtime'
 
 export const clientLoader = async (args: ClientLoaderFunctionArgs) => {
   if (!args.params.id)
@@ -33,9 +33,9 @@ export const clientLoader = async (args: ClientLoaderFunctionArgs) => {
   return json({ tag, logs })
 }
 
-export const meta: MetaFunction<typeof clientLoader> = (args) => {
+export const meta: MetaFunction<typeof clientLoader> = args => {
   const data = args.data as SerializeFrom<typeof clientLoader>
-  return [{ title: data.tag.id + " — Creatorsgarten Inventory" }]
+  return [{ title: data.tag.id + ' — Creatorsgarten Inventory' }]
 }
 
 const Page = () => {

@@ -1,12 +1,5 @@
 import { FunctionComponent, PropsWithChildren, ReactNode } from 'react'
-import {
-  Box,
-  Container,
-  Heading,
-  HStack,
-  Spacer,
-  Text,
-} from '@chakra-ui/react'
+import { Box, Container, Heading, HStack, Spacer, Text } from '@chakra-ui/react'
 
 import { MainContainer } from '~/packlets/layout/mainContainer'
 
@@ -20,7 +13,7 @@ export const ScanLayout: FunctionComponent<Props> = ({
   title,
   subtitle,
   menu,
-  children
+  children,
 }) => {
   return (
     <MainContainer>

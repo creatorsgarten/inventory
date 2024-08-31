@@ -1,4 +1,4 @@
-import { Container, ContainerProps } from "@chakra-ui/react"
+import { Container, ContainerProps } from '@chakra-ui/react'
 import { FunctionComponent } from 'react'
 
 export interface MainContainer extends ContainerProps {}

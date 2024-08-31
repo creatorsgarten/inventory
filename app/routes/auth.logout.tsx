@@ -1,11 +1,11 @@
-import { Button, Container, VStack } from "@chakra-ui/react"
-import { Form, redirect } from "@remix-run/react"
+import { Button, Container, VStack } from '@chakra-ui/react'
+import { Form, redirect } from '@remix-run/react'
 
-import { backend } from "~/backend"
+import { backend } from '~/backend'
 
 export const clientAction = async () => {
   await backend.logOut()
-  return redirect("/")
+  return redirect('/')
 }
 
 const Page = () => {

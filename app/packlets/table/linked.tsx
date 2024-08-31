@@ -12,9 +12,14 @@ interface Props {
 
 export const Linked: FunctionComponent<Props> = ({ type, id }) => {
   return (
-    <Link to={`/${type === TagType.Item ? 'items' : 'containers'}/${id}`} color="black">
+    <Link
+      to={`/${type === TagType.Item ? 'items' : 'containers'}/${id}`}
+      color="black"
+    >
       <HStack>
-        <Icon icon={type === TagType.Container ? 'lucide:container' : 'lucide:tag'} />
+        <Icon
+          icon={type === TagType.Container ? 'lucide:container' : 'lucide:tag'}
+        />
         <Text fontWeight="medium">{id}</Text>
       </HStack>
     </Link>

@@ -15,7 +15,10 @@ interface Handler {
 export const useTagScannerUrlHandler = (): Handler => {
   const location = useLocation()
   const navigate = useNavigate()
-  const searchParams = useMemo(() => new URLSearchParams(location.search), [location.search])
+  const searchParams = useMemo(
+    () => new URLSearchParams(location.search),
+    [location.search]
+  )
 
   const setMethod = (method: ScanMethod) => {
     searchParams.set('method', method)

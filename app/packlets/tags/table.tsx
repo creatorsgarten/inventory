@@ -1,10 +1,10 @@
-import { Await, useLoaderData } from "@remix-run/react"
-import { Table } from "@rayriffy/table"
-import { Suspense } from "react"
+import { Await, useLoaderData } from '@remix-run/react'
+import { Table } from '@rayriffy/table'
+import { Suspense } from 'react'
 
-import { clientLoader } from "~/routes/tags"
-import { columns } from "~/packlets/tags/columns"
-import { Spinner } from "~/packlets/layout/spinner"
+import { clientLoader } from '~/routes/tags'
+import { columns } from '~/packlets/tags/columns'
+import { Spinner } from '~/packlets/layout/spinner'
 
 export const TagsTable = () => {
   const { getTags } = useLoaderData<typeof clientLoader>()

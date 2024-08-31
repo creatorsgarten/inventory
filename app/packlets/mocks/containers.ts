@@ -1,7 +1,11 @@
 import dayjs from 'dayjs'
 
 import { Container } from '~/packlets/commons/types'
-import { TagType, PossessionType, ContainerType } from '~/packlets/commons/constants'
+import {
+  TagType,
+  PossessionType,
+  ContainerType,
+} from '~/packlets/commons/constants'
 
 export const mockContainers: Container[] = [
   {

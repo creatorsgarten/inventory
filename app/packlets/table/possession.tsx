@@ -13,13 +13,21 @@ interface Props {
 export const Possession: FunctionComponent<Props> = ({ type, id }) => {
   const node = (
     <HStack textColor="black">
-      <Icon icon={type === PossessionType.Container ? 'lucide:container' : 'lucide:user'} />
+      <Icon
+        icon={
+          type === PossessionType.Container ? 'lucide:container' : 'lucide:user'
+        }
+      />
       <Text fontWeight="medium">{id}</Text>
     </HStack>
   )
 
   if (type === PossessionType.Container)
-    return <Link to={'/containers/' + id} color="black">{node}</Link>
+    return (
+      <Link to={'/containers/' + id} color="black">
+        {node}
+      </Link>
+    )
 
   return node
 }

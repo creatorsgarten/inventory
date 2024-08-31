@@ -1,8 +1,8 @@
-import { FunctionComponent, PropsWithChildren } from "react"
-import { Box } from "@chakra-ui/react"
+import { FunctionComponent, PropsWithChildren } from 'react'
+import { Box } from '@chakra-ui/react'
 
-import { Navbar } from "~/packlets/layout/navbar"
-import { Internal } from "~/packlets/layout/internal"
+import { Navbar } from '~/packlets/layout/navbar'
+import { Internal } from '~/packlets/layout/internal'
 
 export const AppLayout: FunctionComponent<PropsWithChildren> = ({
   children,

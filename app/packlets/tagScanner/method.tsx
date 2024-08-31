@@ -12,7 +12,12 @@ interface Props {
   value: ScanMethod
 }
 
-export const Method: FunctionComponent<Props> = ({ title, description, icon, value }) => {
+export const Method: FunctionComponent<Props> = ({
+  title,
+  description,
+  icon,
+  value,
+}) => {
   const { setMethod } = useTagScannerUrlHandler()
 
   return (
@@ -21,7 +26,7 @@ export const Method: FunctionComponent<Props> = ({ title, description, icon, val
       variant="outline"
       cursor="pointer"
       _hover={{
-        bg: 'gray.50'
+        bg: 'gray.50',
       }}
       onClick={() => setMethod(value)}
     >

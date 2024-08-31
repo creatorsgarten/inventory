@@ -1,4 +1,4 @@
-import { defineStyle, extendTheme } from "@chakra-ui/react"
+import { defineStyle, extendTheme } from '@chakra-ui/react'
 
 export const chakraTheme = extendTheme({
   fonts: {
@@ -12,12 +12,12 @@ export const chakraTheme = extendTheme({
         black: defineStyle(() => {
           return {
             lineHeight: 0,
-            color: "white",
-            bg: "gray.800",
+            color: 'white',
+            bg: 'gray.800',
             _hover: {
-              bg: "gray.900",
+              bg: 'gray.900',
               _disabled: {
-                bg: "gray.700",
+                bg: 'gray.700',
               },
             },
           }
