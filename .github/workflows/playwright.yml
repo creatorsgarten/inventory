@@ -26,7 +26,7 @@ jobs:
       - name: Serve the app
         run: bunx http-server -c-1 -p 5173 build/client/ & echo $!
       - name: Wait for the server to start
-        run: bunx wait-on http-get://localhost:5173
+        run: bunx wait-on http-get://127.0.0.1:5173
       - name: Run Playwright tests
         run: bun playwright test
       - uses: actions/upload-artifact@v4
