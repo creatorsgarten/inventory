@@ -1,5 +1,6 @@
 #!/bin/bash -e
-DB_URL=postgresql://postgres:postgres@127.0.0.1:54322/postgres
+DEFAULT_DB_URL=postgresql://postgres:postgres@127.0.0.1:54322/postgres
+DB_URL="${DB_URL:-$DEFAULT_DB_URL}"
 
 bun drizzle-kit migrate
 
@@ -9,4 +10,8 @@ do
   psql --dbname "$DB_URL" < "$file"
 done
 
-bun generate-types
+if [ "$DB_URL" = "$DEFAULT_DB_URL" ]; then
+  bun generate-types
+else
+  echo "Skipping generating types as not running against local"
+fi

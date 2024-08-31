@@ -22,8 +22,8 @@ bun supabase start
 # Get the URLs for the local Supabase instance
 bun supabase status
 
-# Migrate the schema
-bun drizzle-kit migrate
+# Run schema migrations (we don’t use Supabase migrations for now and use Drizzle instead)
+db/deploy.sh
 
 # Start dev server
 bun dev
@@ -32,26 +32,6 @@ bun dev
 - To develop with a mock backend, go to `http://mock.localhost:5173/`
 - To develop with a local Supabase instance, go to `http://localhost:5173/`
 - To develop with a production Supabase backend, go to `http://prod.localhost:5173/`
-
-## Database migrations
-
-During development, you can directly make changes to your **local** database schema using Supabase Studio, available at `http://127.0.0.1:54323`. However, when you want to apply these changes to your **production** database, you need to create a migration script. Thankfully, Supabase CLI provides a tool to generate these migration scripts.
-
-```sh
-# Generate TypeScript types for the database schema.
-bun generate-types
-
-# Diff schema changes to create a migration script.
-# This command creates a temporary database, applies all the current migrations,
-# and then compares the schema with the local database.
-# Any differences are output as a migration script.
-# See: https://supabase.com/docs/reference/cli/supabase-db-diff
-bun supabase db diff -f MIGRATION_NAME
-
-# Apply the migration script to the production database.
-# See: https://supabase.com/docs/reference/cli/supabase-db-push
-bun supabase db push
-```
 
 ## Deployment
 
