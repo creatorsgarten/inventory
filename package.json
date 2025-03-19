@@ -37,6 +37,7 @@
     "isbot": "^4.1.0",
     "nanostores": "^0.10.3",
     "nprogress": "^0.2.0",
+    "ofetch": "^1.4.1",
     "pg": "^8.12.0",
     "postgres": "^3.4.4",
     "react": "^19.0.0-canary-4c12339ce-20240408",
