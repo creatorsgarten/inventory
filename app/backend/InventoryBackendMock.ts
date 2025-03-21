@@ -30,12 +30,20 @@ export class InventoryBackendMock implements InventoryBackend {
     options: DescribeInventoryItemsOptions
   ): Promise<Item[]> {
     const items = mockItems;
-    return options.id ? items.filter((item) => item.id === options.id) : items;
+    if (!options.ids || options.ids.length === 0) {
+      return items;
+    }
+    
+    return items.filter((item) => options.ids!.includes(item.id));
   }
 
   async describeTags(options: DescribeTagsOptions = {}): Promise<Tag[]> {
     const tags = mockTags;
-    return options.id ? tags.filter((tag) => tag.id === options.id) : tags;
+    if (!options.ids || options.ids.length === 0) {
+      return tags;
+    }
+    
+    return tags.filter((tag) => options.ids!.includes(tag.id));
   }
 
   async createItem(_payload: CreateItemPayload): Promise<string> {

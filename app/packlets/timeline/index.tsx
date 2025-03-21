@@ -5,8 +5,9 @@ import dayjs from "dayjs";
 import { Icon } from "~/packlets/commons/icon";
 import { Log } from "~/packlets/commons/types";
 import { BaseBadge } from "~/packlets/timeline/baseBadge";
-import { Action, PossessionType } from "~/packlets/commons/constants";
+import { Action, PossessionType, TagType } from "~/packlets/commons/constants";
 import { Link } from "~/packlets/commons/link";
+import { ItemName } from "~/packlets/items/itemName";
 
 interface Props {
   name: string;
@@ -69,7 +70,7 @@ const Activity: FunctionComponent<ActivityProps> = ({ name, log }) => {
             Tag attached to{" "}
             <Link to={`/items/${log.node.id}`}>
               <InlineIcon icon="lucide:tag" />
-              <Span>{log.node.id}</Span>
+              <ItemName id={log.node.id} fallback={log.node.id} />
             </Link>
           </BaseBadge>
         );

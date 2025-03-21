@@ -42,11 +42,11 @@ export interface InventoryBackend {
 }
 
 export interface DescribeInventoryItemsOptions {
-  id?: string;
+  ids?: string[];
 }
 
 export interface DescribeTagsOptions {
-  id?: string;
+  ids?: string[];
 }
 
 export type AuthState =

@@ -4,6 +4,7 @@ import { FunctionComponent } from 'react'
 
 import { TagType } from '~/packlets/commons/constants'
 import { Link } from '~/packlets/commons/link'
+import { ItemName } from '~/packlets/items/itemName'
 
 interface Props {
   type: TagType
@@ -20,7 +21,11 @@ export const Linked: FunctionComponent<Props> = ({ type, id }) => {
         <Icon
           icon={type === TagType.Container ? 'lucide:container' : 'lucide:tag'}
         />
-        <Text fontWeight="medium">{id}</Text>
+        {type === TagType.Item ? (
+          <ItemName id={id} fallback={id} />
+        ) : (
+          <Text fontWeight="medium">{id}</Text>
+        )}
       </HStack>
     </Link>
   )

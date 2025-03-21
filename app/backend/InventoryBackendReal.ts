@@ -60,13 +60,13 @@ export class InventoryBackendReal implements InventoryBackend {
     options: DescribeInventoryItemsOptions
   ): Promise<Item[]> {
     return ofetch("https://creatorsgarten-inventory.deno.dev/items", {
-      query: { id: options.id || undefined },
+      query: { id: options.ids ? options.ids.join(',') : undefined },
     });
   }
 
   async describeTags(options: DescribeTagsOptions = {}): Promise<Tag[]> {
     return ofetch("https://creatorsgarten-inventory.deno.dev/tags", {
-      query: { id: options.id || undefined },
+      query: { id: options.ids ? options.ids.join(',') : undefined },
     });
   }
 
@@ -78,7 +78,7 @@ export class InventoryBackendReal implements InventoryBackend {
 
   async getTagLogs(tagId: string): Promise<Log[]> {
     const logs: Log[] = [];
-    const tags = await this.describeTags({ id: tagId });
+    const tags = await this.describeTags({ ids: [tagId] });
     
     if (tags.length === 0) {
       return [];
@@ -120,7 +120,7 @@ export class InventoryBackendReal implements InventoryBackend {
 
   async getItemLogs(itemId: string): Promise<Log[]> {
     const logs: Log[] = [];
-    const items = await this.describeInventoryItems({ id: itemId });
+    const items = await this.describeInventoryItems({ ids: [itemId] });
     
     if (items.length === 0) {
       return [];
