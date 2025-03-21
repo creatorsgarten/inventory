@@ -6,32 +6,20 @@ This project leverages [Remix SPA Mode](https://remix.run/docs/en/main/future/sp
 
 There are 3 ways to develop:
 
-1. **Mock Backend**: Develop with a mock backend. Data is not saved anywhere. This is good for quickly adjusting frontend components or when the backend is not ready yet.
+1. **Mock Backend**: Develop with a mock backend. Data is not saved anywhere. This is good for quickly adjusting frontend components.
 
-2. **Local Supabase**: Develop with a local Supabase instance. This is good for developing with isolated data.
-
-3. **Production Supabase**: Develop with a production Supabase instance. For when you want to troubleshoot production issues or want to work with actual production data.
+2. **Real Backend:** Develop with a real backend. Data is saved in our Grist instance. This is good for testing the app with real data.
 
 ```sh
 # Install dependencies
 bun install
-
-# Start Supabase (only when you want to develop with local Supabase)
-bun supabase start
-
-# Get the URLs for the local Supabase instance
-bun supabase status
-
-# Run schema migrations (we don’t use Supabase migrations for now and use Drizzle instead)
-db/deploy.sh
 
 # Start dev server
 bun dev
 ```
 
 - To develop with a mock backend, go to `http://mock.localhost:5173/`
-- To develop with a local Supabase instance, go to `http://localhost:5173/`
-- To develop with a production Supabase backend, go to `http://prod.localhost:5173/`
+- To develop with a production backend, go to `http://localhost:5173/`
 
 ## Deployment
 
