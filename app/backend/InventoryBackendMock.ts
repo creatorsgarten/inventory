@@ -8,6 +8,7 @@ import {
   AuthState,
   CreateItemPayload,
   DescribeInventoryItemsOptions,
+  DescribeTagsOptions,
   InventoryBackend,
 } from "./InventoryBackend";
 
@@ -31,8 +32,9 @@ export class InventoryBackendMock implements InventoryBackend {
     return options.id ? items.filter((item) => item.id === options.id) : items;
   }
 
-  async describeTags(): Promise<Tag[]> {
-    return mockTags;
+  async describeTags(options: DescribeTagsOptions = {}): Promise<Tag[]> {
+    const tags = mockTags;
+    return options.id ? tags.filter((tag) => tag.id === options.id) : tags;
   }
 
   async createItem(_payload: CreateItemPayload): Promise<string> {

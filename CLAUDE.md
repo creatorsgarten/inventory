@@ -1,6 +1,7 @@
 # Creatorsgarten Inventory - Agent Guidelines
 
 ## Commands
+
 - Build: `pnpm build`
 - Dev: `pnpm dev`
 - Lint: `pnpm lint` (Biome)
@@ -10,6 +11,7 @@
 - Single test: `npx playwright test tests/smoke.test.ts`
 
 ## Code Style
+
 - Use 2 space indentation
 - Prefer single quotes for strings
 - Use semicolons as needed
@@ -19,9 +21,11 @@
 - Path aliases: import from `~/packlets/*` for app modules
 
 ## Project Structure
+
 - Remix-based app with packlets architecture
 - Backend interfaces in `app/backend/`
 - Reusable components in `app/packlets/`
 - Use Chakra UI for components
-- Supabase for authentication and database
+- Supabase for authentication
+- Custom backend API for database access
 - Playwright for testing

@@ -8,6 +8,7 @@ import {
   AuthState,
   CreateItemPayload,
   DescribeInventoryItemsOptions,
+  DescribeTagsOptions,
   InventoryBackend,
 } from "./InventoryBackend";
 import { singletonSupabase } from "./supabase";
@@ -62,8 +63,10 @@ export class InventoryBackendReal implements InventoryBackend {
     });
   }
 
-  async describeTags(): Promise<Tag[]> {
-    return ofetch("https://creatorsgarten-inventory.deno.dev/tags");
+  async describeTags(options: DescribeTagsOptions = {}): Promise<Tag[]> {
+    return ofetch("https://creatorsgarten-inventory.deno.dev/tags", {
+      query: { id: options.id || undefined },
+    });
   }
 
   async createItem(payload: CreateItemPayload): Promise<string> {

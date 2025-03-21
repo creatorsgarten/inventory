@@ -1,8 +1,5 @@
 import { ReadableAtom } from "nanostores";
-
 import { Item, Tag } from "~/packlets/commons/types";
-
-import { Database } from "./supabaseTypes";
 
 export interface InventoryBackend {
   /**
@@ -51,11 +48,6 @@ export interface AuthUser {
   uid: string;
   name: string;
 }
-
-type TableRow<K extends keyof Database["public"]["Tables"]> =
-  Database["public"]["Tables"][K]["Row"];
-
-export interface InventoryItem extends TableRow<"inventory_items"> {}
 
 export interface CreateItemPayload {
   name: string;

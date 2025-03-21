@@ -1,5 +1,5 @@
-import { mockTags } from '~/packlets/mocks/tags'
+import { backend } from '~/backend'
 import { Tag } from '~/packlets/commons/types'
 
 export const getTagById = async (tagId: string): Promise<Tag | null> =>
-  mockTags[0]
+  backend.describeTags({ id: tagId }).then(r => r[0] || null)
