@@ -1,8 +1,9 @@
 import { Session } from "@supabase/supabase-js";
 import { atom, onMount } from "nanostores";
 
-import { Item, Tag } from "~/packlets/commons/types";
+import { Item, Log, Tag } from "~/packlets/commons/types";
 import { ofetch } from "ofetch";
+import { Action } from "~/packlets/commons/constants";
 
 import {
   AuthState,
@@ -72,6 +73,93 @@ export class InventoryBackendReal implements InventoryBackend {
   async createItem(payload: CreateItemPayload): Promise<string> {
     throw new Error(
       "Please update the inventory in Grist: https://grist.creatorsgarten.org/rUs75kT5nc8a/Inventorygarten"
+    );
+  }
+
+  async getTagLogs(tagId: string): Promise<Log[]> {
+    const logs: Log[] = [];
+    const tags = await this.describeTags({ id: tagId });
+    
+    if (tags.length === 0) {
+      return [];
+    }
+    
+    const tag = tags[0];
+    
+    // Created log
+    logs.push({
+      id: `tag-created-${tagId}`,
+      action: Action.Created,
+      node: {
+        id: tagId,
+      },
+      createdAt: tag.createdAt,
+    });
+    
+    // Tagged log (if tag has a link)
+    if (tag.link) {
+      logs.push({
+        id: `tag-linked-${tagId}`,
+        action: Action.Tagged,
+        node: {
+          id: tag.link.id,
+          type: tag.link.type,
+        },
+        target: {
+          id: tagId,
+        },
+        createdAt: tag.updatedAt,
+      });
+    }
+    
+    // Sort logs by createdAt in reverse chronological order
+    return logs.sort((a, b) => 
+      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
+  }
+
+  async getItemLogs(itemId: string): Promise<Log[]> {
+    const logs: Log[] = [];
+    const items = await this.describeInventoryItems({ id: itemId });
+    
+    if (items.length === 0) {
+      return [];
+    }
+    
+    const item = items[0];
+    
+    // Created log
+    logs.push({
+      id: `item-created-${itemId}`,
+      action: Action.Created,
+      node: {
+        id: itemId,
+        type: item.type,
+      },
+      createdAt: item.createdAt,
+    });
+    
+    // Tagged log (if item has tags)
+    if (item.tags && item.tags.length > 0) {
+      for (const tagId of item.tags) {
+        logs.push({
+          id: `item-tagged-${itemId}-${tagId}`,
+          action: Action.Tagged,
+          node: {
+            id: itemId,
+            type: item.type,
+          },
+          target: {
+            id: tagId,
+          },
+          createdAt: item.updatedAt,
+        });
+      }
+    }
+    
+    // Sort logs by createdAt in reverse chronological order
+    return logs.sort((a, b) => 
+      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     );
   }
 }

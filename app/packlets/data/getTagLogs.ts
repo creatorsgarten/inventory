@@ -1,4 +1,4 @@
 import { Log } from '~/packlets/commons/types'
-import { mockTagLogs } from '~/packlets/mocks/logs'
+import { backend } from '~/backend'
 
-export const getTagLogs = async (tagId: string): Promise<Log[]> => mockTagLogs
+export const getTagLogs = async (tagId: string): Promise<Log[]> => backend.getTagLogs(tagId)

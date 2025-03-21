@@ -1,16 +1,16 @@
-import { FunctionComponent, PropsWithChildren } from 'react'
-import { Box, Text } from '@chakra-ui/react'
-import dayjs from 'dayjs'
+import { FunctionComponent, PropsWithChildren } from "react";
+import { Box, Text } from "@chakra-ui/react";
+import dayjs from "dayjs";
 
-import { Icon } from '~/packlets/commons/icon'
-import { Log } from '~/packlets/commons/types'
-import { BaseBadge } from '~/packlets/timeline/baseBadge'
-import { Action, PossessionType } from '~/packlets/commons/constants'
-import { Link } from '~/packlets/commons/link'
+import { Icon } from "~/packlets/commons/icon";
+import { Log } from "~/packlets/commons/types";
+import { BaseBadge } from "~/packlets/timeline/baseBadge";
+import { Action, PossessionType } from "~/packlets/commons/constants";
+import { Link } from "~/packlets/commons/link";
 
 interface Props {
-  name: string
-  logs: Log[]
+  name: string;
+  logs: Log[];
 }
 
 export const Timeline: FunctionComponent<Props> = ({ name, logs }) => {
@@ -38,12 +38,12 @@ export const Timeline: FunctionComponent<Props> = ({ name, logs }) => {
         </Box>
       ))}
     </Box>
-  )
-}
+  );
+};
 
 interface ActivityProps {
-  name: string
-  log: Log
+  name: string;
+  log: Log;
 }
 
 const Activity: FunctionComponent<ActivityProps> = ({ name, log }) => {
@@ -57,21 +57,37 @@ const Activity: FunctionComponent<ActivityProps> = ({ name, log }) => {
         >
           {name} has been created
         </BaseBadge>
-      )
+      );
     case Action.Tagged:
-      return (
-        <BaseBadge
-          color="blue.500"
-          icon="lucide:tag"
-          date={dayjs(log.createdAt)}
-        >
-          {name} tagged with tag{' '}
-          <Link to={`/tags/${log.target!.id}`}>
-            <InlineIcon icon="lucide:cpu" />
-            <Span>{log.target!.id}</Span>
-          </Link>
-        </BaseBadge>
-      )
+      if (name === "Tag") {
+        return (
+          <BaseBadge
+            color="blue.500"
+            icon="lucide:tag"
+            date={dayjs(log.createdAt)}
+          >
+            Tag attached to{" "}
+            <Link to={`/items/${log.node.id}`}>
+              <InlineIcon icon="lucide:tag" />
+              <Span>{log.node.id}</Span>
+            </Link>
+          </BaseBadge>
+        );
+      } else {
+        return (
+          <BaseBadge
+            color="blue.500"
+            icon="lucide:tag"
+            date={dayjs(log.createdAt)}
+          >
+            {name} tagged with tag{" "}
+            <Link to={`/tags/${log.target!.id}`}>
+              <InlineIcon icon="lucide:cpu" />
+              <Span>{log.target!.id}</Span>
+            </Link>
+          </BaseBadge>
+        );
+      }
     case Action.Updated:
       return (
         <BaseBadge
@@ -81,7 +97,7 @@ const Activity: FunctionComponent<ActivityProps> = ({ name, log }) => {
         >
           {name} metadata has been updated
         </BaseBadge>
-      )
+      );
     case Action.CheckIn:
       if (log.target?.type === PossessionType.Container)
         return (
@@ -90,13 +106,13 @@ const Activity: FunctionComponent<ActivityProps> = ({ name, log }) => {
             icon="lucide:container"
             date={dayjs(log.createdAt)}
           >
-            {name} has been checked into{' '}
+            {name} has been checked into{" "}
             <Link to={`/containers/${log.target!.id}`}>
               <InlineIcon icon="lucide:container" />
               <Span>{log.target?.name}</Span>
             </Link>
           </BaseBadge>
-        )
+        );
       else
         return (
           <BaseBadge
@@ -107,7 +123,7 @@ const Activity: FunctionComponent<ActivityProps> = ({ name, log }) => {
             {name} has been transferred to <InlineIcon icon="lucide:user" />
             <Span>{log.target?.name}</Span>
           </BaseBadge>
-        )
+        );
     default:
       return (
         <BaseBadge
@@ -117,16 +133,16 @@ const Activity: FunctionComponent<ActivityProps> = ({ name, log }) => {
         >
           Unknown action (Code: <Span>{log.action}</Span>)
         </BaseBadge>
-      )
+      );
   }
-}
+};
 
 const Span: FunctionComponent<PropsWithChildren> = ({ children }) => (
   <Text as="span" color="black" fontWeight="medium">
     {children}
   </Text>
-)
+);
 
 const InlineIcon: FunctionComponent<{ icon: string }> = ({ icon }) => (
   <Icon icon={icon} mb={-0.5} mr={1} color="black" />
-)
+);

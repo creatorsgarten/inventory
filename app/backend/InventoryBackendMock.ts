@@ -1,8 +1,9 @@
 import { atom } from "nanostores";
 
 import { mockItems } from "~/packlets/mocks/items";
-import { Item, Tag } from "~/packlets/commons/types";
+import { Item, Log, Tag } from "~/packlets/commons/types";
 import { mockTags } from "~/packlets/mocks/tags";
+import { mockItemLogs, mockTagLogs } from "~/packlets/mocks/logs";
 
 import {
   AuthState,
@@ -41,5 +42,19 @@ export class InventoryBackendMock implements InventoryBackend {
     await new Promise((resolve) => setTimeout(resolve, 2000));
     const newItemId = crypto.randomUUID();
     return newItemId;
+  }
+
+  async getTagLogs(tagId: string): Promise<Log[]> {
+    return mockTagLogs.filter(log => 
+      log.node.id === tagId || 
+      (log.target && log.target.id === tagId)
+    );
+  }
+
+  async getItemLogs(itemId: string): Promise<Log[]> {
+    return mockItemLogs.filter(log => 
+      log.node.id === itemId || 
+      (log.target && log.target.id === itemId)
+    );
   }
 }

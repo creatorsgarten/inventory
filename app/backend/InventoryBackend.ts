@@ -1,5 +1,5 @@
 import { ReadableAtom } from "nanostores";
-import { Item, Tag } from "~/packlets/commons/types";
+import { Item, Log, Tag } from "~/packlets/commons/types";
 
 export interface InventoryBackend {
   /**
@@ -29,6 +29,16 @@ export interface InventoryBackend {
    * @returns the id of the created item
    */
   createItem: (payload: CreateItemPayload) => Promise<string>;
+
+  /**
+   * Get logs for a specific tag
+   */
+  getTagLogs: (tagId: string) => Promise<Log[]>;
+
+  /**
+   * Get logs for a specific item
+   */
+  getItemLogs: (itemId: string) => Promise<Log[]>;
 }
 
 export interface DescribeInventoryItemsOptions {

@@ -1,5 +1,5 @@
-import { mockItemLogs } from '~/packlets/mocks/logs'
 import { Log } from '~/packlets/commons/types'
+import { backend } from '~/backend'
 
 export const getItemLogs = async (itemId: string): Promise<Log[]> =>
-  mockItemLogs
+  backend.getItemLogs(itemId)
