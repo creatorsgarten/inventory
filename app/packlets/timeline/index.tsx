@@ -55,7 +55,7 @@ const Activity: FunctionComponent<ActivityProps> = ({ name, log }) => {
           icon="lucide:plus"
           date={dayjs(log.createdAt)}
         >
-          {name} has been created
+          {name} has been registered
         </BaseBadge>
       );
     case Action.Tagged:
